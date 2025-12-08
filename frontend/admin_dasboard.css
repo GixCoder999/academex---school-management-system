@@ -1,0 +1,1089 @@
+:root {
+    /* Palette */
+    --page-bg: #071028; /* darker page background */
+    --card-bg: #0e1c45; /* lighter slate-teal card */
+    --text: #e8eef8; /* off-white */
+    --indigo: #7c83f7; /* primary accent */
+    --indigo-600: #5b4ff0; /* hover */
+    --indigo-700: #3f3aa8; /* active */
+    --input-bg: #f1f7ff; /* input background */
+    --placeholder: #475569; /* slate-600 */
+    --button-border: #d6dbff; /* light indigo border */
+    --link: #a1b0c4; /* link color */
+    --heading-text: #fbfdff; /* near-white */
+    /* RGB variants for rgba shadows */
+    --indigo-rgb: rgb(124,130,247); /* indigo rgb */
+    --page-dark-rgb: rgb(11,18,40); /* dark page rgb used in shadow */
+    /* Blue gradient centered around the deep indigo (--indigo-700) */
+    --blue-700: var(--indigo-700); /* deep blue center */
+    --blue-500: #6874db; /* mid indigo */
+    --blue-300: #5c73f5; /* lighter indigo */
+    --blue-gradient: linear-gradient(135deg, var(--indigo-700) 0%, var(--blue-500) 45%, var(--blue-300) 100%);
+    --border: rgb(67, 62, 62);
+    --main-bg: rgb(34, 34, 38);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    top: 0;
+    color: white;
+    background-color: rgb(34, 34, 38);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    overflow: hidden;
+}
+
+.alert-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.alert-box {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+}
+
+.alert-text {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #333;
+}
+
+.alert-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.alert-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.alert-button.ok {
+    background: #007bff;
+    color: white;
+}
+
+.alert-button.cancel {
+    background: #6c757d;
+    color: white;
+}
+
+.alert-button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+/*.bg-gradient {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    opacity: 0.9;
+    background: radial-gradient(circle at 20% 60%, rgba(0, 112, 243, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.2) 0%, transparent 50%);
+    filter: blur(60px);
+    z-index: -2;
+    transform: translateX(-100px);
+    transform: translateY(-400px);
+}
+
+.grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(56, 189, 248, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridMove 20s linear infinite;
+    z-index: -1;
+}
+
+@keyframes gridMove {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(50px); }
+}*/
+
+.loader {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+    background: rgba(42, 53, 85, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);  
+    position: absolute;
+    z-index: 1002;
+}
+
+.bar {
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    height: 12px;
+    width: 150px;
+    background: linear-gradient(90deg,var(--card-bg) ,var(--indigo-700), var(--card-bg));
+    color: black;
+    border-radius: 5px;
+    background-size: 200% 200%;
+    box-shadow: 1px 1px 10px rgb(29, 26, 81);
+    animation: loaderAnimation 1.2s ease infinite;
+}
+
+@keyframes loaderAnimation {
+    0% {background-position:0%}
+    50% {background-position:100%}
+    100% {background-position:0%}
+}
+
+/*ICONS-START*/
+.navlinks > button > i, .feature-cards > div > p > i {
+    margin-right: 16px;
+}
+
+.feature-cards > div > i {
+    margin-right: 5px;
+    font-size: 26px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 50px;
+}
+
+.f-students i {
+    color: #4f91fc;
+}
+
+.f-teachers i {
+    color: #f74a4a;
+}
+
+.f-classes i {
+    color: #22a24a;
+}
+/*ICONS-END*/
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 45rem; 
+    width: 21%;
+    background-color: rgb(34, 34, 38);
+    border-right: 1px solid var(--placeholder);
+}
+
+.logo {
+    background-color: var(--indigo-700);
+    padding-left: 20px;
+}
+
+.navlinks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 70px 0px 50% 0px;
+}
+
+.navlinks > button {
+    color: white;
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+    margin-top: 30px;
+    border-radius: 6px;
+    padding: 7px 20px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+}
+
+.navlinks > button:hover {
+    border-left: 5px solid  var(--indigo-700);
+    border-radius: 0px;
+    background-color: var(--indigo);
+}
+
+.body-section {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    position: block;
+    justify-content: space-between;
+    align-items: center;
+    gap: 100px;
+    background-color: rgb(47, 47, 54);
+    padding: 20px;
+    width: 97%;
+    border-radius: 3px;
+}
+
+.header > div {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+}
+
+.header > div > a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 10px;
+    padding: 3px;
+    height: 100%;
+    cursor: pointer;
+}
+
+.auth-buttons > button {
+    color: white;
+    background-color: transparent;
+    border: 2px solid var(--indigo-700);
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    padding: 7px 10px;
+    cursor: pointer;
+}   
+
+.auth-buttons {
+    margin-left: 130px;
+    gap: 10px;
+}
+
+.profile-pic img {
+    width: 50px;
+    height: 50px;
+    border: 2px solid var(--indigo-700);
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.header > div > a:hover {
+    padding-bottom:1px;
+    border-bottom: 4px solid  var(--indigo-700);
+}
+
+.auth-buttons > button:hover {
+    border: none;
+    background-color: var(--indigo-700);
+}
+
+.auth-buttons > button:active {
+    background-color: var(--indigo-700);
+}
+
+.profile-pic img:hover {
+    border: 2px solid var(--indigo-700);
+}
+
+.adm-admin > h1 {
+    padding: 10px;
+}
+
+.feature-cards {
+    display: flex;
+    align-items: flex-start;
+    gap: 50px;
+    padding: 10px;
+}
+
+.feature-cards > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+    padding: 10px 10px 20px 30px;
+    width: 230px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(11, 18, 40, 0.3);
+}
+
+.f-students {
+    background: var(--blue-gradient);
+}
+
+.f-teachers {
+    background: linear-gradient(135deg, rgb(247, 74, 74) 0%, rgb(208, 91, 91) 45%, rgb(214, 68, 68) 100%);
+}
+
+.f-classes {
+    background: linear-gradient(135deg, rgb(34, 154, 74) 0%, rgb(91, 208, 126) 45%, rgb(34, 154, 74) 100%);
+}
+
+.feature-cards > div > span {
+    font-size: 24px;
+    margin-left: 45px;
+}
+
+.feature-cards > div:hover {
+    transform: translateY(-5px);
+    scale: 1.1;
+    transition: all 0.3s ease-in-out;
+    transition: all 0.3s reverse ease-out;
+}
+
+.bottom-section {
+    display: flex;
+    gap: 30px;
+}
+
+.notice-board {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 10px;
+    margin-top: 20px;
+    margin-left: 10px;
+    height: 290px;
+    width: 400px;
+    border: 1px solid var(--placeholder);
+}
+
+.notice-board > div {
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+}
+
+.notice-board > div > button {
+    display: flex;
+    position: relative;
+    font-weight: bold;
+    right: -220px;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--indigo-700);
+    color: white;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.notice-board > div > button:hover {
+    background-color: var(--indigo-700);
+    transform: scale(1.1);
+}
+
+.notice-board > div > button:active {
+    background-color: red;
+}
+
+#news {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    overflow-y: scroll;
+    width: 400px;
+}
+
+#news > a {
+    width: 350px;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid var(--placeholder);
+}
+
+#news > a:hover {
+    background-color: var(--indigo-700);
+}
+
+.display-notice-panel {
+    display: none;
+    align-content: center;
+    position: absolute;
+    z-index: 1000;
+    top: 25%;
+    left: 35%;
+    background-color: var(--page-bg);
+    padding: 35px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgb(24, 24, 24);
+    flex-direction: column;
+    align-items: center;
+    width: 500px;
+    text-align: center;
+}
+
+.notice-desc {
+    font-size: 18px;
+    text-align: center;
+    color: white;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    height: 300px;
+    width: 450px;
+}
+
+.quick-btns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+    margin-top: 20px;
+    margin-left: 10px;
+    height: 290px;
+    width: 400px;
+    border: 1px solid var(--placeholder);
+}
+
+#notice-description {
+    width: 250px;
+    height: 80px;
+    background-color: transparent;
+    border: 1.5px solid var(--placeholder);
+    border-radius: 5px;
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 16px;
+    padding: 10px;
+    resize: none;
+}
+
+.quick-btns > button {
+    width: 350px;
+    background-color: var(--indigo-700);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: left;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.quick-btns > button:hover {
+    background-color: var(--indigo-600);
+}
+
+.quick-btns > button:active {
+    background-color: var(--indigo-700);
+}
+
+
+/*manage students as admin*/
+/*adm-admin is actually named as body above*/
+.adm-admin {
+    display: flex;
+    flex-direction: column;
+}
+
+/*.line {
+    width: 100%;
+    color: white;
+    background-color: #475569;
+}*/
+
+.adm-students {
+    display: none;
+    flex-direction: column;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    width: 100%;
+    height: 100%;
+}
+
+.upper {
+    width: 95%;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+    padding-bottom: 10px;
+    background-color: var(--indigo-700);
+    border: 2px solid var(--indigo-700);
+    border-radius: 10px;  
+    z-index: 1;
+}
+
+.add-std-panel, .dlt-std-panel, .upd-std-panel,.post-notice-panel {
+    position: absolute;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background-color: var(--page-bg);
+    padding: 30px;    
+    border-radius: 10px;
+    top: 30%;
+    right: 25%;
+    box-shadow: 5px 5px 15px rgb(24, 24, 24);
+}
+
+.add-std-panel > div, .dlt-std-panel > div,.upd-std-panel > div, 
+.post-notice-panel > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.std-id {
+    transform: translateX(12px);
+}
+
+.std-age {
+    transform: translateX(6px);
+}
+
+.post-notice-panel {
+    display: none;
+    width: 600px;
+    height: 300px;
+    left: 30%;
+}
+
+.dlt-std-panel {
+    display: none;
+}
+
+.add-std-panel {
+    display: none;
+}
+
+.upd-std-panel {
+    display: none;
+    width: 1000px;
+    height: 250px;
+    left: 10%;
+}
+
+.std-btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.std-btns > button, .add-std-panel > div > button, .dlt-std-panel > div > button,
+.upd-std-panel > div > button,.post-notice-panel > div > button {
+    padding: 10px 15px;
+    background: transparent;
+    border: 1.2px solid white;
+    color: white;
+    font-size: 16px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.std-btns > button:hover, .add-std-panel > div > button:hover, 
+.dlt-std-panel > div > button:hover,.post-notice-panel > div > button:hover,
+.upd-std-panel > div > button:hover {
+    scale: 1.05;
+    border: none;
+    background: var(--card-bg);
+    box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in;
+}
+
+.std-btns > button:active, .add-std-panel > div > button:active,.post-notice-panel > div > button:active,
+.dlt-std-panel > div > button:active, .upd-std-panel > div > button:active {
+    background-color: var(--indigo-700);
+}
+
+input {
+    width: 150px;
+}
+
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+    appearance: none;
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    appearance: none;
+    -moz-appearance: textfield;
+}
+ 
+select {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 18px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-left: 10px;
+    /*start*/
+    background: var(--indigo);
+    border: 0px solid;
+    border-radius: 12px;
+    color: #f1f5f9;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+}
+
+select:focus {
+    background: rgba(43, 60, 87, 0.8);
+    border-color: var(--indigo-700);
+    box-shadow: 0 0 0 3px rgba(1, 75, 159, 0.1),
+                0 0 10px rgba(0, 112, 243, 0.2);
+}
+
+select option {
+    cursor: pointer;
+    border-radius: 0px;
+    border: none;
+}
+
+/*.stdtable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 40px auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+    height: 400px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+table {
+    padding: 10px;
+    width: 90%;
+    text-align: center;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+}*/
+
+.stdtable,.tcrtable,.cls-list {
+  position: relative;
+  height: 300px;               /* or whatever fits your layout */
+  overflow-y: auto;            /* allows scrolling */
+  overflow-x: hidden;
+  border-radius: 12px;
+  background: var(--indigo-800); /* fits your theme */
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--placeholder);
+  text-align: center;
+}
+
+/* remove fades */
+.stdtable::before,
+.stdtable::after {
+  display: none;
+}
+
+/* table styling */
+.stdtable table,.tcrtable table,.cls-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--text-primary);
+  font-size: 14px;
+  text-align: center;
+}
+
+/* header row sticky */
+.stdtable th,.tcrtable th,.cls-table th {
+  position: sticky;
+  background: var(--card-bg);
+  top: 0; /* darker header */
+  font-weight: 600;
+  padding: 12px;
+  z-index: 5;                     /* ensures it stays above scrolling rows */
+}
+
+/* table rows */
+.stdtable tbody tr,.tcrtable tbody tr,.cls-table tbody tr {
+  border-bottom: 1px solid var(--placeholder);
+  transition: background 0.2s ease;
+}
+
+.stdtable tr:hover, .tcrtable tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.stdtable td,.tcrtable td {
+  padding: 10px 12px;
+  color: var(--text-secondary);
+}
+
+/* smooth scrollbar */
+.stdtable::-webkit-scrollbar {
+  width: 6px;
+}
+.stdtable::-webkit-scrollbar-thumb {
+  background: var(--indigo-700);
+  border-radius: 10px;
+}
+.stdtable::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+.head-row {
+    position: sticky;
+    background-color: #0a1a33;
+    height: 60px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.even-row {
+    background-color: var(--indigo-700);
+    height: 40px;
+    font-size: 18px;
+}
+.odd-row {
+    background-color: var(--indigo-600);
+    font-size: 18px;
+    height: 40px;
+}
+
+#options > label {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/*#optheading {
+    background-color: #0a1a33;
+    text-align: center;
+    padding: 5px;
+    width: 90%;
+}*/
+
+.error01 {
+    font-size: 24px;
+    color: red;
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.adm-teachers {
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.adm-teachers > h1 {
+    margin-top: 0px;
+    font-size: 25px;
+}
+
+.tcrform {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.tcrform > div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.tcrinput {
+    height: 30px;
+    background-color: transparent;
+    border: 1.5px solid var(--placeholder);
+    border-radius: 5px;
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 18px;
+    padding-left: 10px;
+}
+
+#tcrid,#tcrage,#tcrclass {
+    width: 60px;
+}
+
+#tcrsubject {
+    width: 100px;
+}
+
+#tcrname {
+    width: 130px;
+}
+
+#tcremail {
+    width: 200px;
+}
+
+.tcrform > div > button {
+    cursor: pointer;
+    background-color: var(--indigo-600);
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+    width: 60px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: white;
+    transition: all 0.5s ease;
+}
+
+.tcrform > div > button:hover {
+    background-color: var(--indigo-700);
+    scale: 1.06;
+}
+
+.tcrform > div > button:active {
+    background-color: var(--indigo-600);
+}
+
+#tcr-filters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+#tcr-filters > div {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+
+#datef {
+    background-color: var(--indigo);
+    color: white;
+    border: none;
+    height: 30px;
+    border-radius: 12px;
+    padding: 4px;
+    margin-left: 10px;
+}
+
+.adm-classes {
+    display: none;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.cls-row {
+    height: 50px;
+    border-bottom: 1px solid var(--placeholder);
+    background-color: rgba(79, 79, 79, 0.226);
+    font-size: 17px;
+}
+
+.cls-row > td > button {
+    margin: 5px;
+    background-color: var(--indigo-600);
+    border: none;
+    color: white;
+    width: 50px;
+    height: 30px;
+    border-radius: 5px;
+    box-shadow: 1px 0px 3px #071028;    
+}
+
+.cls-row > td > button:hover,#cls-add-btn:hover {
+    background-color: var(--indigo-700);
+    cursor: pointer;
+}
+
+.cls-row > td > button:active,#cls-add-btn:active {
+    background-color: var(--indigo-600);
+}
+
+.classes- {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;    
+}
+
+#cls-edit-btn {
+    margin-left: 30px;
+    height: 35px;
+    background-color: var(--indigo-600);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 5px;
+    box-shadow: 1px 0px 5px #071028;
+    cursor: pointer;
+}
+
+#cls-edit-btn:hover {
+    background-color: var(--indigo-700);
+}   
+
+#cls-edit-btn:active {
+    background-color: var(--indigo-600);
+}   
+
+#cls-dlt-btn {
+    font-size: 12px;
+    padding: 2px;
+}
+
+#std-opt-list, #sub-opt-list {
+    width: 300px;
+    height: 200px;
+    background-color: var(--indigo-800);
+    color: white;
+    border: 1px solid var(--placeholder);
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#std-opt-list option, #sub-opt-list option {
+    padding: 6px;
+    border-radius: 5px;
+}
+
+#std-opt-list option:hover, #sub-opt-list option:hover {
+    background-color: var(--indigo-700);
+}
+
+#std-opt-list option:checked, #sub-opt-list option:checked {
+    background: var(--indigo-700);
+    color: white;
+}
+
+.edit-class-panel {
+    display: none;
+    align-content: center;
+    position: absolute;
+    z-index: 1000;
+    top: 25%;
+    left: 45%;
+    background-color: var(--page-bg);
+    padding: 35px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgb(24, 24, 24);
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.edit-class-panel > div > button,.edit-class-panel > div > div > button {
+    padding: 10px 15px;
+    background: transparent;
+    border: 1.2px solid white;
+    color: white;
+    font-size: 16px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.pre-opts {
+    display: flex;
+    gap: 20px;
+}
+
+.std-opt,.sub-opt,.tcr-opt {
+    display: none;
+    gap: 20px;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.std-opt > div {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.std-opt > div > button, .display-notice-panel button {
+    padding: 5px 10px;
+    background: transparent;
+    border: 1.2px solid white;
+    color: white;
+    font-size: 14px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.edit-class-panel > div > button:hover,.edit-class-panel > div > div > button:hover, 
+.display-notice-panel button:hover {
+    scale: 1.05;
+    border: none;
+    background: var(--card-bg);
+    box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in;
+}
+
+.edit-class-panel > div > button:active,.edit-class-panel > div > div > button:active,
+.display-notice-panel button:active {
+    background-color: var(--indigo-700);
+}
+
+.class-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background-color: var(--indigo-600);
+    padding: 0px 10px;
+    border-radius: 10px;
+}
+
+.adm-help {
+    display: none;
+}
+

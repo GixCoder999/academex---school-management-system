@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AcademeX | About Us</title>
+    <style>
+        :root {
+            /* Palette - Ultra Refined for consistency */
+            --page-bg: #010610; /* Near black for maximum depth */
+            --card-bg: #0e1c45; /* Dark blue-slate card */
+            --text: #e0e6f6; /* Soft white body text */
+            --indigo: #7c83f7; /* Primary accent (consistent) */
+            --indigo-600: #5b4ff0; 
+            --indigo-700: #3f3aa8; 
+            --heading-text: #ffffff; /* Pure white headings */
+            --subtle-shadow: rgba(0, 0, 0, 0.7);
+            --border: rgba(124, 130, 247, 0.2); /* Slightly more visible border */
+            /* Gradient for hero section - deeper blues */
+            --blue-gradient: linear-gradient(145deg, #2a3c8f 0%, #4a54c9 60%, #5c73f5 100%);
+        }
+
+        /* Base Styles and Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: var(--page-bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.7; /* Increased line height for better reading */
+            text-rendering: optimizeLegibility;
+        }
+        
+        /* Layout */
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header/Navigation - Enhanced Professionalism */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 80px;
+            background: rgba(14, 28, 69, 0.9); /* Semi-transparent background */
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px var(--subtle-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header h3 {
+            font-size: 30px;
+            font-weight: 900;
+            color: var(--indigo);
+            letter-spacing: -1px;
+        }
+        
+        .navlinks {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .navlinks a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s, background 0.3s, transform 0.3s;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        
+        .navlinks a:hover {
+            background: rgba(124, 130, 247, 0.15);
+            color: var(--indigo);
+            transform: translateY(-2px);
+        }
+
+        /* Active link styling */
+        .navlinks a.current-page {
+            background: rgba(124, 130, 247, 0.25) !important;
+            color: var(--heading-text) !important;
+            border: 1px solid var(--indigo);
+            font-weight: 600;
+            pointer-events: none;
+        }
+        
+        .Login {
+            background: var(--indigo);
+            color: var(--heading-text);
+            border-radius: 8px;
+            padding: 12px 25px;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(124, 130, 247, 0.6);
+        }
+        
+        .Login:hover {
+            background: var(--indigo-600);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(124, 130, 247, 0.8);
+        }
+        
+        /* Hero Content (Banner) */
+        .hero-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 20px; /* More vertical padding */
+            background: var(--blue-gradient);
+            box-shadow: inset 0 -15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .hero-content h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            color: var(--heading-text);
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            font-weight: 900;
+        }
+        
+        .hero-content p {
+            font-size: 1.4rem;
+            margin-bottom: 50px;
+            max-width: 800px;
+            color: var(--text);
+            opacity: 0.95;
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .hero-btns button {
+            padding: 16px 40px;
+            border: none;
+            border-radius: 10px;
+            font-size: 19px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .login {
+            background: var(--heading-text);
+            color: var(--indigo-700);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .login:hover {
+            background: #ffffff;
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+        
+        .about {
+            background: transparent;
+            color: var(--heading-text);
+            border: 2px solid var(--heading-text);
+            box-shadow: none;
+        }
+        
+        .about:hover {
+            background: rgba(255, 255, 255, 0.15); /* Stronger hover background */
+            transform: scale(1.05); /* Consistent hover effect */
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+            border-color: var(--indigo);
+        }
+        
+        /* Main Content Container */
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 30px;
+            background: var(--page-bg);
+        }
+
+        /* Section Headings Style */
+        .section-heading {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--heading-text);
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        /* About Content Grid */
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Larger minimum width */
+            gap: 40px; /* Increased gap */
+            margin-bottom: 80px;
+        }
+        
+        .about-card {
+            background: var(--card-bg);
+            border-radius: 20px; /* More rounded corners */
+            padding: 40px; /* More padding */
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            border: 2px solid var(--border);
+            height: 100%; /* Ensures cards in grid are the same height */
+        }
+        
+        .about-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 15px rgba(124, 130, 247, 0.5); /* Subtle glow */
+            border-color: var(--indigo);
+        }
+        
+        .about-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Increased gap */
+            color: var(--heading-text);
+            font-weight: 700;
+        }
+        
+        .about-card h2 i {
+            color: var(--indigo);
+            font-size: 2rem;
+        }
+        
+        .about-card p {
+            line-height: 1.8;
+            color: var(--text);
+            opacity: 0.9;
+            font-size: 1.05rem;
+        }
+        
+        /* Mission & Vision Section */
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+        
+        .mission, .vision {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            border: 2px solid var(--border);
+        }
+        
+        .mission h2, .vision h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--indigo); /* Mission/Vision headings in accent color */
+            font-weight: 800;
+        }
+        
+        .mission h2 i, .vision h2 i {
+            color: var(--heading-text);
+            font-size: 2.2rem;
+            background: var(--indigo);
+            padding: 5px;
+            border-radius: 5px;
+        }
+        
+        .mission p, .vision p {
+            line-height: 1.8;
+            color: var(--text);
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        /* Team Section */
+        .team-section {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 80px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            border: 2px solid var(--border);
+        }
+        
+        .team-section h2 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            color: var(--heading-text);
+            font-weight: 900;
+        }
+        
+        .team-grid {
+            display: grid;
+            /* Adjusted minmax to fit 4 members well, but still respond to smaller screens */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 30px;
+        }
+        
+        .team-member {
+            text-align: center;
+            padding: 25px;
+            background: rgba(14, 28, 69, 0.7);
+            border-radius: 15px;
+            transition: all 0.3s;
+            border: 1px solid rgba(124, 130, 247, 0.1);
+        }
+        
+        .team-member:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            background: rgba(14, 28, 69, 1);
+        }
+        
+        .member-img {
+            width: 130px; /* Larger image */
+            height: 130px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: var(--indigo-700);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--indigo); /* Accent border */
+            box-shadow: 0 0 10px rgba(124, 130, 247, 0.5);
+        }
+        
+        .member-img i {
+            font-size: 60px; /* Larger icon */
+            color: var(--heading-text);
+        }
+        
+        .member-name {
+            font-weight: 700;
+            margin-bottom: 5px;
+            font-size: 1.4rem;
+            color: var(--heading-text);
+        }
+        
+        .member-role {
+            color: var(--indigo);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+        
+        .team-member p {
+            color: var(--text);
+            font-size: 15px;
+            opacity: 0.8;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            border: 2px solid var(--border);
+        }
+        
+        .stats-section h2 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            color: var(--heading-text);
+            font-weight: 900;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+            background: rgba(14, 28, 69, 0.7);
+            border-radius: 15px;
+            transition: all 0.3s;
+            border: 1px solid rgba(124, 130, 247, 0.1);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            background: rgba(14, 28, 69, 1);
+        }
+        
+        .stat-number {
+            font-size: 3.5rem; /* Larger number */
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--indigo);
+            text-shadow: 0 0 10px rgba(124, 130, 247, 0.3);
+        }
+        
+        .stat-label {
+            color: var(--text);
+            font-weight: 600;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Bottom Cards Section */
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            padding: 100px 30px;
+            background: var(--page-bg);
+            border-top: 1px solid rgba(124, 130, 247, 0.2);
+        }
+        
+        .left, .right {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+        }
+        
+        .students, .teachers, .classes, .admin {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 40px;
+            width: 300px;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border);
+        }
+        
+        .students:hover, .teachers:hover, .classes:hover, .admin:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+            border-color: var(--indigo);
+        }
+        
+        .students i, .teachers i, .classes i, .admin i {
+            font-size: 60px;
+            margin-bottom: 25px;
+            color: var(--indigo);
+        }
+        
+        .students h3, .teachers h3, .classes h3, .admin h3 {
+            margin-bottom: 10px;
+            color: var(--heading-text);
+            font-size: 1.6rem;
+            font-weight: 800;
+        }
+        
+        .students a, .teachers a, .classes a, .admin a {
+            color: var(--heading-text);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+        }
+
+        .students a:hover, .teachers a:hover, .classes a:hover, .admin a:hover {
+            color: var(--indigo);
+        }
+        
+        .students p, .teachers p, .classes p, .admin p {
+            font-size: 16px;
+            color: var(--text);
+            opacity: 0.9;
+        }
+        
+        /* Media Queries */
+        @media (max-width: 1200px) {
+            .header {
+                padding: 20px 40px;
+            }
+        }
+        @media (max-width: 1024px) {
+            .about-content {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+            .mission-vision {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .navlinks {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero-content {
+                padding: 80px 20px;
+            }
+
+            .hero-content h1 {
+                font-size: 3.5rem;
+            }
+            
+            .about-container {
+                padding: 60px 20px;
+            }
+
+            .about-content, .mission-vision, .team-section, .stats-section, .cards {
+                gap: 40px;
+                margin-bottom: 60px;
+            }
+            
+            .about-card, .mission, .vision, .team-section, .stats-section {
+                padding: 30px;
+            }
+
+            .team-grid, .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            
+            .cards {
+                flex-direction: column;
+                align-items: center;
+                padding: 80px 20px;
+            }
+            .students, .teachers, .classes, .admin {
+                width: 90%;
+                max-width: 400px;
+            }
+            .left, .right {
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h3 {
+                font-size: 24px;
+            }
+            .navlinks a, .Login {
+                font-size: 14px;
+            }
+            .hero-content {
+                padding: 60px 10px;
+            }
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            .hero-btns button {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="hero-section">
+        <header class="header">
+            <div>
+                <h3>AcademeX</h3>
+            </div>
+            <div class="navlinks">
+                <a href="home.html">Home</a>
+                <a href="about.html" class="current-page">About Us</a>
+                <a href="contacts.html">Contacts</a>
+                <a class="Login" href="signin_real.html">Login</a>
+            </div>
+        </header>
+        
+        <div class="hero-content">
+            <h1>About AcademeX</h1>
+            <p>Empowering educational institutions with cutting-edge technology to streamline administration, enhance learning experiences, and foster academic excellence.</p>
+            <div class="hero-btns">
+                <button class="login" onclick="location.href='signin_real.html'">Login to Dashboard</button>
+            </div>
+        </div>
+        
+        <div class="about-container">
+            <div class="about-content">
+                <div class="about-card">
+                    <h2><i class="bi bi-lightbulb-fill"></i> Our Story</h2>
+                    <p>Established in 2025, AcademeX was built on the principle that school management should be seamless and intelligent. Today, our innovative platform serves educational institutions worldwide, delivering comprehensive solutions for student data management, teacher coordination, and academic process optimization.</p>
+                </div>
+                
+                <div class="about-card">
+                    <h2><i class="bi bi-gear-fill"></i> Our Technology</h2>
+                    <p>We harness cutting-edge cloud infrastructure, real-time analytics, and intelligent automation to deliver comprehensive solutions for student lifecycle management, performance optimization, and institutional efficiency. Our platform is built for speed, reliability, and security.</p>
+                </div>
+                
+                <div class="about-card">
+                    <h2><i class="bi bi-award-fill"></i> Our Achievements</h2>
+                    <p>Pioneering the future of educational technology with our 2025 school management platform, designed to set new standards in institutional efficiency and student success tracking. We are proud to be recognized for our user-centric design and powerful integration capabilities.</p>
+                </div>
+            </div>
+            
+            <div class="mission-vision">
+                <div class="mission">
+                    <h2><i class="bi bi-bullseye"></i> Our Mission</h2>
+                    <p>To transform educational institutions through innovative technology solutions that simplify administrative tasks, enhance teaching effectiveness, and improve student outcomes.</p>
+                </div>
+                
+                <div class="vision">
+                    <h2><i class="bi bi-eye-fill"></i> Our Vision</h2>
+                    <p>To create a world where every educational institution has access to powerful, intuitive tools that enable them to focus on what matters most: nurturing the next generation of leaders and innovators.</p>
+                </div>
+            </div>
+            
+            <div class="team-section">
+                <h2>Meet Our Leadership Team</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-img">
+                            <i class="bi bi-code-slash"></i> </div>
+                        <div class="member-name">Muhammad Sohaib</div>
+                        <div class="member-role">Full Stack Developer</div>
+                        <p>Efficient and possesses mastery in full stack development, driving both front-end innovation and robust back-end systems.</p>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="member-img">
+                            <i class="bi bi-code-slash"></i>
+                        </div>
+                        <div class="member-name">Muhammad Shoaib</div>
+                        <div class="member-role">Full Stack Developer</div>
+                        <p>Drives end-to-end platform development, ensuring seamless front-end user experience and robust back-end architecture.</p>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-img">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+                        <div class="member-name">Mohib</div>
+                        <div class="member-role">Backend Engineer</div>
+                        <p>Expert in backend development and data architecture.</p>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-img">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+                        <div class="member-name">Sufyan</div>
+                        <div class="member-role">Frontend Specialist</div>
+                        <p>Experienced in crafting responsive and user-friendly interfaces.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stats-section">
+                <h2>By The Numbers</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Institutions Served</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-number">50K+</div>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-number">15</div>
+                        <div class="stat-label">Countries Globally</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Customer Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cards">
+            <div class="left">
+                <div class="students">
+                    <i class="bi bi-mortarboard-fill"></i>
+                    <h3><a href="">Manage Students</a></h3>
+                    <p>Manage Student Data and Records</p>
+                </div>
+                <div class="teachers">
+                    <i class="bi bi-person-fill"></i>
+                    <h3><a href="">Manage Teachers</a></h3>
+                    <p>Manage Teachers and Creatives</p>
+                </div>
+            </div>
+            <div class="right">
+                <div class="classes">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <h3><a href="">Class Scheduling</a></h3>
+                    <p>Manage and Schedule Classes</p>
+                </div>
+                <div class="admin">
+                    <i class="bi bi-house-door-fill

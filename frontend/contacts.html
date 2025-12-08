@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AcademeX | Contact Us</title>
+    <style>
+        :root {
+            /* Palette - Ultra Refined */
+            --page-bg: #010610; /* Near black for maximum depth */
+            --card-bg: #0e1c45; /* Dark blue-slate card */
+            --text: #e0e6f6; /* Soft white body text */
+            --indigo: #7c83f7; /* Primary accent (consistent) */
+            --indigo-600: #5b4ff0; 
+            --indigo-700: #3f3aa8; 
+            --heading-text: #ffffff; /* Pure white headings */
+            --subtle-shadow: rgba(0, 0, 0, 0.7);
+            --border: rgba(124, 130, 247, 0.2); /* Slightly more visible border */
+            /* Gradient for hero section - deeper blues */
+            --blue-gradient: linear-gradient(145deg, #2a3c8f 0%, #4a54c9 60%, #5c73f5 100%);
+        }
+
+        /* Base Styles and Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        }
+        
+        body {
+            background: var(--page-bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.6;
+            text-rendering: optimizeLegibility; /* Better font rendering */
+        }
+        
+        /* Layout */
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header/Navigation */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 80px; /* Increased padding */
+            background: rgba(14, 28, 69, 0.9); /* Semi-transparent background for modern look */
+            backdrop-filter: blur(5px); /* Added blur effect */
+            box-shadow: 0 4px 15px var(--subtle-shadow); 
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header h3 {
+            font-size: 30px; /* Larger logo */
+            font-weight: 900;
+            color: var(--indigo);
+            letter-spacing: -1px;
+        }
+        
+        .navlinks {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .navlinks a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s, background 0.3s, transform 0.3s;
+            padding: 10px 18px; 
+            border-radius: 6px; /* Slightly sharper edges */
+            font-size: 16px;
+        }
+        
+        .navlinks a:hover {
+            background: rgba(124, 130, 247, 0.15);
+            color: var(--indigo);
+            transform: translateY(-2px); /* Deeper lift on hover */
+        }
+
+        .navlinks a.current-page {
+            background: rgba(124, 130, 247, 0.25) !important;
+            color: var(--heading-text) !important;
+            border: 1px solid var(--indigo);
+            font-weight: 600;
+            pointer-events: none;
+        }
+        
+        .Login {
+            background: var(--indigo);
+            color: var(--heading-text);
+            border-radius: 8px;
+            padding: 12px 25px; /* Bigger button */
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(124, 130, 247, 0.6); /* More pronounced glow shadow */
+        }
+        
+        .Login:hover {
+            background: var(--indigo-600);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(124, 130, 247, 0.8);
+        }
+        
+        /* Hero Section (Gradient Banner) */
+        .contact-hero-container {
+            padding: 100px 20px; /* More vertical padding */
+            text-align: center;
+            background: var(--blue-gradient);
+            box-shadow: inset 0 -15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .contact-hero-container h1 {
+            font-size: 4.5rem; /* Max impact */
+            margin-bottom: 20px;
+            line-height: 1.1;
+            color: var(--heading-text);
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            font-weight: 900;
+        }
+
+        .contact-hero-container p {
+            font-size: 1.4rem; 
+            max-width: 800px;
+            margin: 0 auto 50px auto;
+            color: var(--text);
+            opacity: 0.95;
+        }
+
+        .hero-btns button {
+            padding: 16px 40px; /* Maximize button size */
+            border-radius: 10px;
+            font-size: 19px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .login {
+            background: var(--heading-text);
+            color: var(--indigo-700);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .login:hover {
+            background: #ffffff;
+            transform: scale(1.05); /* Added subtle scaling */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Main Contact Content */
+        .contact-container {
+            max-width: 1200px; /* Wider content area */
+            margin: 0 auto;
+            padding: 80px 30px; /* Generous padding */
+            background: var(--page-bg);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            font-size: 3rem;
+            color: var(--heading-text);
+            margin-bottom: 15px;
+            font-weight: 900;
+        }
+
+        /* Direct Contact Block */
+        .no-feedback {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 45px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border: 2px solid var(--border); /* Thicker, more prominent border */
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .no-feedback h2 {
+            color: var(--indigo); 
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+            font-weight: 800;
+        }
+
+        .no-feedback p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Contact Methods Grid */
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Slightly wider min width */
+            gap: 40px;
+            margin-top: 0;
+        }
+
+        .contact-method {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            padding: 40px 25px; 
+            background: var(--card-bg);
+            border-radius: 15px;
+            transition: all 0.3s;
+            border: 1px solid var(--border);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-method:hover {
+            transform: translateY(-10px) scale(1.02); /* Deeper lift and slight scale */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(124, 130, 247, 0.7); /* Stronger glow */
+            border-color: var(--indigo-600);
+        }
+
+        .contact-method i {
+            font-size: 55px; /* Max icon size */
+            color: var(--indigo);
+            margin-bottom: 5px;
+        }
+
+        .contact-details h3 {
+            color: var(--heading-text);
+            margin-bottom: 5px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .contact-details p {
+            color: var(--text);
+            font-size: 1.05rem;
+            margin: 0;
+            line-height: 1.5;
+            opacity: 0.85;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: var(--card-bg);
+            border-radius: 20px; /* Slightly rounder corners */
+            padding: 50px 70px; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border: 2px solid var(--border);
+            margin-top: 70px;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            color: var(--heading-text);
+            margin-bottom: 50px;
+            font-size: 3rem;
+            font-weight: 900;
+        }
+
+        .faq-item {
+            margin-bottom: 1px; /* Remove visible margin */
+            border-bottom: 1px solid rgba(124, 130, 247, 0.1);
+            transition: background 0.2s;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-item.active {
+            background: rgba(124, 130, 247, 0.05); /* Highlight active item background */
+        }
+
+        .faq-question {
+            padding: 20px 25px; 
+            background: transparent;
+            color: var(--heading-text);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+            font-size: 1.2rem; /* Larger FAQ text */
+        }
+
+        .faq-question i {
+             font-size: 20px;
+             transition: transform 0.3s;
+        }
+
+        .faq-question:hover {
+            color: var(--indigo);
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1), padding 0.5s ease; /* Better cubic-bezier transition */
+            color: var(--text);
+        }
+
+        .faq-answer p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 10px 25px 30px 25px; /* Adjusted padding for better visual flow */
+            max-height: 500px;
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--indigo);
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+            color: var(--indigo-600);
+        }
+
+        /* Feature Cards Section */
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 50px; /* Maximized gap */
+            padding: 100px 30px;
+            background: var(--page-bg);
+            border-top: 1px solid rgba(124, 130, 247, 0.2);
+        }
+        
+        .left, .right {
+            display: flex;
+            flex-direction: column;
+            gap: 50px; /* Maximized gap */
+        }
+        
+        .students, .teachers, .classes, .admin {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 40px; 
+            width: 300px; /* Wider card */
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border);
+        }
+        
+        .students:hover, .teachers:hover, .classes:hover, .admin:hover {
+            transform: translateY(-15px); /* Maximum lift */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+            border-color: var(--indigo);
+        }
+        
+        .students i, .teachers i, .classes i, .admin i {
+            font-size: 60px; /* Largest icons */
+            margin-bottom: 25px;
+            color: var(--indigo);
+        }
+
+        .students h3 a, .teachers h3 a, .classes h3 a, .admin h3 a {
+            color: var(--heading-text);
+            font-size: 1.6rem;
+            font-weight: 800;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+        
+        .students h3 a:hover, .teachers h3 a:hover, .classes h3 a:hover, .admin h3 a:hover {
+            color: var(--indigo);
+        }
+        
+        .students p, .teachers p, .classes p, .admin p {
+            font-size: 16px;
+            color: var(--text);
+            opacity: 0.9;
+        }
+        
+        /* Media Queries for Responsiveness */
+        @media (max-width: 1200px) {
+            .header {
+                padding: 20px 40px;
+            }
+        }
+        @media (max-width: 1024px) {
+            .cards {
+                gap: 30px;
+            }
+            .students, .teachers, .classes, .admin {
+                width: 270px;
+            }
+            .contact-methods {
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .navlinks {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .contact-hero-container h1 {
+                font-size: 3.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-methods {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-section {
+                padding: 30px 20px;
+            }
+            
+            .cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            .students, .teachers, .classes, .admin {
+                width: 90%;
+                max-width: 400px;
+            }
+            .left, .right {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h3 {
+                font-size: 24px;
+            }
+            .navlinks a, .Login {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+            .contact-hero-container {
+                padding: 60px 10px;
+            }
+            .contact-hero-container h1 {
+                font-size: 2.8rem;
+            }
+            .hero-btns button {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+            .faq-question {
+                font-size: 1rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="hero-section">
+        <header class="header">
+            <div>
+                <h3>AcademeX</h3>
+            </div>
+            <div class="navlinks">
+                <a href="home.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="contacts.html" class="current-page">Contacts</a>
+                <a class="Login" href="signin_real.html">Login</a>
+            </div>
+        </header>
+        
+        <div class="contact-hero-container">
+            <h1>Contact AcademeX</h1>
+            <p>Get in touch with our team for inquiries, support, or to schedule a demo of our comprehensive school management platform.</p>
+            <div class="hero-btns">
+                <button class="login" onclick="location.href='signin_real.html'">Login to Dashboard</button>
+            </div>
+        </div>
+        
+        <div class="contact-container">
+            
+            <div class="no-feedback">
+                <h2>Direct Contact Only</h2>
+                <p>We prioritize personalized service. For faster, more direct assistance, please reach out to us using one of the contact methods below instead of a general form.</p>
+            </div>
+            
+            <div class="section-header">
+                <h2>Our Contact Channels</h2>
+                <p>Choose the best way to connect with the AcademeX team based on your needs.</p>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <i class="bi bi-telephone-fill"></i>
+                        <div class="contact-details">
+                            <h3>Sales & Support</h3>
+                            <p>+1 (555) 123-4567</p>
+                            <p>Mon-Fri: 9:00 AM - 6:00 PM EST</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <i class="bi bi-envelope-fill"></i>
+                        <div class="contact-details">
+                            <h3>General Inquiries</h3>
+                            <p>support@academex.com</p>
+                            <p>sales@academex.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <i class="bi bi-chat-dots-fill"></i>
+                        <div class="contact-details">
+                            <h3>Live Chat</h3>
+                            <p>Instant response during business hours</p>
+                            <p>24/7 for premium customers</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <div class="contact-details">
+                            <h3>Corporate Address</h3>
+                            <p>123 Education Drive, Suite 500</p>
+                            <p>Tech City, TC 10001, USA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-section">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How quickly can I get started with AcademeX?
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can start using AcademeX within 24 hours of signing up. Our onboarding process is designed to get your institution up and running quickly, with full implementation support available.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do you offer training for staff and teachers?
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we provide comprehensive training sessions for administrators, teachers, and staff. This includes live webinars, video tutorials, and personalized training sessions to ensure everyone is comfortable with the platform.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What kind of support do you provide?
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer 24/7 email support, live chat during business hours, and phone support for urgent issues. Premium customers also receive dedicated account management and priority support.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can AcademeX integrate with our existing systems?
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! AcademeX offers robust API integration capabilities and can connect with most existing student information systems, learning management systems, and administrative software.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cards">
+            <div class="left">
+                <div class="students">
+                    <i class="bi bi-mortarboard-fill"></i>
+                    <h3><a href="">Manage Students</a></h3>
+                    <p>Manage Student Data and Records</p>
+                </div>
+                <div class="teachers">
+                    <i class="bi bi-person-fill"></i>
+                    <h3><a href="">Manage Teachers</a></h3>
+                    <p>Manage Teachers and Creatives</p>
+                </div>
+            </div>
+            <div class="right">
+                <div class="classes">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <h3><a href="">Class Scheduling</a></h3>
+                    <p>Manage and Schedule Classes</p>
+                </div>
+                <div class="admin">
+                    <i class="bi bi-house-door-fill"></i>
+                    <h3><a href="admin_dashboard.html">Admin Panel</a></h3>
+                    <p>Administrative Tools and Settings</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    // FAQ functionality (UNTOUCHED LOGIC)
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const item = question.parentElement;
+            const answer = item.querySelector('.faq-answer');
+
+            // Close all other open FAQs
+            document.querySelectorAll('.faq-item.active').forEach(activeItem => {
+                if (activeItem !== item) {
+                    activeItem.classList.remove('active');
+                    activeItem.querySelector('.faq-answer').style.maxHeight = null;
+                }
+            });
+
+            // Toggle the clicked one
+            item.classList.toggle('active');
+            if (item.classList.contains('active')) {
+                // Use scrollHeight for dynamic height to ensure all content fits
+                answer.style.maxHeight = answer.scrollHeight + 30 + "px"; 
+            } else {
+                answer.style.maxHeight = null;
+            }
+        });
+    });
+
+    // Navigation functionality (UNTOUCHED LOGIC)
+    document.querySelector('.Login').addEventListener('click', function() {
+        window.location.href = 'signin_real.html';
+    });
+    
+    document.querySelector('.admin a').addEventListener('click', function() {
+        window.location.href = 'admin_dashboard.html';
+    });
+</script>
+</html>

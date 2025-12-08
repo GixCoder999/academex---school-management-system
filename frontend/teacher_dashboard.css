@@ -1,0 +1,503 @@
+:root {
+    /* Palette */
+    --page-bg: #071028; /* darker page background */
+    --card-bg: #0e1c45; /* lighter slate-teal card */
+    --text: #e8eef8; /* off-white */
+    --indigo: #7c83f7; /* primary accent */
+    --indigo-600: #5b4ff0; /* hover */
+    --indigo-700: #3f3aa8; /* active */
+    --input-bg: #f1f7ff; /* input background */
+    --placeholder: #475569; /* slate-600 */
+    --button-border: #d6dbff; /* light indigo border */
+    --link: #a1b0c4; /* link color */
+    --heading-text: #fbfdff; /* near-white */
+    /* RGB variants for rgba shadows */
+    --indigo-rgb: rgb(124,130,247); /* indigo rgb */
+    --page-dark-rgb: rgb(11,18,40); /* dark page rgb used in shadow */
+    /* Blue gradient centered around the deep indigo (--indigo-700) */
+    --blue-700: var(--indigo-700); /* deep blue center */
+    --blue-500: #6874db; /* mid indigo */
+    --blue-300: #5c73f5; /* lighter indigo */
+    --blue-gradient: linear-gradient(135deg, var(--indigo-700) 0%, var(--blue-500) 45%, var(--blue-300) 100%);
+    --border: rgb(67, 62, 62);
+    --main-bg: rgb(34, 34, 38);
+    --header-bg: rgb(47, 47, 54);
+}
+
+body {
+    background-color: var(--main-bg);
+    color: var(--text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--main-bg);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.alert-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.alert-box {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+}
+
+.alert-text {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #333;
+}
+
+.alert-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.alert-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.alert-button.ok {
+    background: #007bff;
+    color: white;
+}
+
+.alert-button.cancel {
+    background: #6c757d;
+    color: white;
+}
+
+.alert-button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.loader {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+    background: rgba(42, 53, 85, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);  
+    position: absolute;
+    z-index: 1002;
+}
+
+.bar {
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    height: 12px;
+    width: 150px;
+    background: linear-gradient(90deg,var(--card-bg) ,var(--indigo-700), var(--card-bg));
+    color: black;
+    border-radius: 5px;
+    background-size: 200% 200%;
+    box-shadow: 1px 1px 10px rgb(29, 26, 81);
+    animation: loaderAnimation 1.2s ease infinite;
+}
+
+@keyframes loaderAnimation {
+    0% {background-position:0%}
+    50% {background-position:100%}
+    100% {background-position:0%}
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    padding: 1.5% 5%;
+    background-color: var(--header-bg);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    justify-content: space-between;
+}
+
+.header div {
+    display: flex;
+    gap: 50px;
+}
+
+.h-links {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.h-links a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.h-buttons button {
+    background: transparent;
+    color: var(--text);
+    border: 2px solid var(--indigo-700);
+    padding: 0px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.h-buttons button:hover {
+    background-color: var(--indigo-700);
+}
+
+.h-buttons button:active {
+    background-color: var(--indigo-600);
+}
+
+.img img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.img img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+    border: 2px solid var(--indigo-700);
+}
+
+#sms-logo {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+
+.main-section {
+    padding: 30px 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.main-content {
+    text-align: center;
+    background-color: var(--indigo-700);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.class-cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.class-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    height: 30%;
+    margin-bottom: 20px;
+}
+
+.class-card h3 {
+    margin-top: 0;
+    color: var(--heading-text);
+}
+
+.class-card button,#view-class-stds {
+    background-color: var(--indigo-600);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.class-card button:hover,#view-class-stds:hover {
+    background-color: var(--indigo-700);
+    cursor: pointer;
+}
+
+.class-card button:active,#view-class-stds:active {
+    background-color: var(--indigo-500);
+}
+
+/* Popup Background */
+#table-popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    backdrop-filter: blur(4px);
+}
+
+/* Popup Box */
+#popup-content {
+    background: var(--indigo-700);
+    width: 85%;
+    max-width: 800px;
+    border-radius: 14px;
+    padding: 25px 30px;
+    position: relative;
+    box-shadow: 0px 10px 35px rgba(0,0,0,0.25);
+    animation: fadeIn 0.25s ease-out;
+}
+
+/* Title */
+.popup-title {
+    margin: 0;
+    padding-bottom: 10px;
+    font-size: 22px;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--placeholder);
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--card-bg);
+    border-radius: 6px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+.close-btn:hover {
+    background-color:red;
+}
+
+/* Table Wrapper (scroll for overflow) */
+.table-wrapper {
+    margin-top: 20px;
+    max-height: 350px;
+    overflow-y: auto;
+    border-radius: 8px;
+    border: 1px solid var(--placeholder);
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+/* Table */
+#students-table {
+    border-collapse: collapse;
+    font-size: 15px;
+    color: var(--text-primary);
+    table-layout: fixed;
+}
+
+/* Header */
+#students-table thead th {
+    position: sticky;
+    top: 0;
+    background: var(--card-bg);
+    font-weight: 700;
+    padding: 12px;
+    border-bottom: 2px solid var(--placeholder);
+    
+}
+/* Rows */
+#students-table tbody tr {
+    transition: background 0.15s ease;
+}
+
+/* Hover Row */
+#students-table tbody tr:hover {
+    background: rgba(100, 100, 255, 0.09);
+}
+
+/* Cell Style */
+#students-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--placeholder);
+}
+
+#subjects-container {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: var(--card-bg);
+    box-shadow: 0px 10px 35px rgba(0,0,0,0.25);
+    border: 1px solid var(--placeholder);
+    height: 30%;
+    width: 40%;
+    padding: 20px;
+    border-radius: 12px;
+    position: absolute;
+    z-index: 1000;
+    top: 35%;
+    left: 30%;
+    gap: 20px;
+}
+
+#close-btn {
+    position: absolute;
+    top: 5%;
+    right: 3%;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+#close-btn:hover {
+    font-size: 26px;
+    color: red;
+}
+
+#close-btn:active {
+    color: white;
+}
+
+/* Container Select */
+#subjects-list {
+
+    width: 220px;
+    padding: 12px;
+    border-radius: 12px;
+    background: var(--card-bg);
+    color: #fff;
+    border: 2px solid rgb(255, 255, 255);
+    outline: none;
+    font-size: 15px;
+    cursor: pointer;
+    appearance: none; /* Removes default arrow */
+    background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='white'><path d='M5 7l5 5 5-5'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    text-align: center;
+    
+}
+
+/* Options Styling */
+#subjects-list option {
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    text-align: center;
+    font-size: 15px;
+}
+
+/* Hover for options (works in most browsers) */
+#subjects-list option:hover {
+    text-align: center;
+    background: #dcdcdc;
+}
+
+/* When dropdown is open (for some browsers) */
+#subjects-list:focus {
+    text-align: center;
+    box-shadow: 0 0 5px rgba(77, 166, 255, 0.6);
+}
+
+/* Edit Marks Modal */
+.edit-marks-modal {
+    position: absolute;
+    top: 0%; left: 0%;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.edit-modal-content {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 15px;
+    width: 320px;
+    color: var(--text);
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+.edit-modal-content h2 {
+    margin-top: 0;
+    text-align: center;
+    color: var(--indigo);
+}
+
+.edit-modal-content label {
+    margin-top: 10px;
+    display: block;
+    font-size: 14px;
+}
+
+.edit-modal-content input,
+.edit-modal-content select {
+    width: 100%;
+    margin-top: 5px;
+    padding: 8px;
+    background: var(--page-bg);
+    border: 1px solid var(--button-border);
+    border-radius: 8px;
+    color: var(--text);
+}
+
+.edit-modal-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.edit-modal-actions button {
+    width: 48%;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    background: var(--indigo);
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.edit-modal-actions button:hover {
+    background: var(--indigo-600);
+}
+
+
+/* Popup Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+}

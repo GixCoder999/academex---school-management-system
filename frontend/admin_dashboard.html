@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS | Home</title>
+</head>
+<link rel="stylesheet" href="admin_dasboard.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+<body>
+    <div class="bg-gradient"></div>
+    <div class="grid"></div>
+
+    <div class="loader" id="loader">
+        <p class="bar"></p>
+    </div> 
+    
+    <div class="main-container">
+        <div class="sidebar">
+            <div class="logo">
+                <h2>SCHOOL MANAGEMENT SYSTEM</h2>
+            </div>
+            <div class="navlinks">
+                <button id="adm-btn"><i class="bi bi-house-door-fill"></i>Admin</button>
+                <button id="std-btn"><i class="bi bi-mortarboard-fill"></i>Students</button>
+                <button id="tcr-btn"><i class="bi bi-person-fill"></i>Teachers</button>
+                <button id="cls-btn"><i class="bi bi-grid-1x2-fill"></i>Classes</button>
+                <button id="hlp-btn"><i class="bi bi-info-circle-fill"></i>Help</button>
+            </div>
+        </div>
+        <div class="body-section">
+            <div class="header">
+                <div>
+                    <a href="../index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contacts.html">Contacts</a>
+                    <a id="quick-sup-btn" href="contacts.html">Support</a>
+                </div>
+                <div class="auth-buttons">
+                    <button id="logout-btn" onclick="logout()">Logout</button>
+                    <button id="signin-btn" onclick="location.href='signin_real.html'">Sign in</button>
+                    <div class="profile-pic">
+                        <img id="user-img" src="" alt="Profile Picture">
+                    </div>
+                </div>
+            </div>
+            <div class="adm-admin" id="adm-admin">
+                <h1>Welcome Back!</h1>
+                <div class="feature-cards">
+                    <div class="f-students">
+                        <i class="bi bi-mortarboard-fill"></i>
+                        <div>
+                            <p>Total Students</p>
+                            <span id="std-count">2500</span>
+                        </div>
+                    </div>
+                    <div class="f-teachers">
+                        <i class="bi bi-person-fill"></i>
+                        <div>
+                            <p>Total Teachers</p>
+                            <span id="tcr-count">200</span>
+                        </div>
+                    </div>
+                    <div class="f-classes">
+                        <i class="bi bi-grid-1x2-fill"></i>
+                        <div>
+                            <p>Total Classes</p>
+                            <span id="cls-count">50</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-section">
+                    <div class="notice-board" id="notice-board">
+                        <div>
+                            <h2>Notice Board</h2>
+                            <button id="quick-post-notice" onclick="document.getElementById('post-notice-panel').style.display='flex'">+</button>
+                        </div>
+                        <div id="news">
+                            <a href="#">Annual Sports Gala 2025</a>
+                        </div>
+                    </div>
+                    <div class="quick-btns">
+                        <button id="quick-add-tcr">Add New Teacher</button>
+                        <button id="quick-add-std">Add New Student</button>
+                        <button id="quick-view-std">View All Students</button>
+                        <button onclick="document.getElementById('post-notice-panel').style.display='flex'">Post Notice</button>
+                    </div>
+                    <div id="post-notice-panel" class="post-notice-panel">
+                        <h2>Post New Notice</h2>
+                        <div>
+                            <label for="notice-title">Title: </label>
+                            <input type="text" maxlength="50" id="notice-title" name="notice-title" required>
+                        </div>
+                        <div>
+                            <label for="">Description: </label>
+                            <textarea type="text" maxlength="200" id="notice-description" placeholder="Write notice description..."></textarea>
+                        </div>
+                        <div>
+                            <label for="audience">Audience</label>
+                            <select name="audience" id="audience">
+                                <option value="all" selected>All</option>
+                                <option value="students">Students</option>
+                                <option value="teachers">Teachers</option>
+                            </select>
+                        </div>
+                        <div>
+                            <button type="button" onclick="postNotice()">Post</button>
+                            <button type="button" onclick="this.parentNode.parentNode.style.display='none'">Close</button>
+                        </div>
+                    </div>
+                    <div id="display-notice-panel" class="display-notice-panel">
+                        <h2 id="notice-heading">Notice Title</h2>
+                        <p id="notice-desc">Notice Description</p>
+                        <div id="display-notice-btns">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="adm-students" id="adm-students">
+                
+                <div id="adm-std-body">
+                    <div class="upper">
+                        <h1>Manage Students</h1>
+                        <div class="std-btns">
+                            <button id="std-add-btn">Add New Student</button>
+                            <button id="std-dlt-btn">Delete Student</button>
+                            <button id="std-upd-btn">Update Record</button>
+                        </div>
+                        <form class="add-std-panel" id="add-std-panel" method="post">
+                            <h2>Add New Student</h2>
+                            <div>
+                                <label for="name">Enter Student Name: </label>
+                                <input name="name" id="std-name" type="text" pattern="^[A-Za-z]+( [A-Za-z]+)*$" required>
+                            </div>
+                            <div>
+                                <label for="age">Enter Student Age: </label>
+                                <input name="age" id="std-age" type="number" min="5" max="25" placeholder="5-25" required>
+                            </div>
+                            <div>
+                                <label for="clss">Enter Student Class: </label>
+                                <input name="clss" id="std-cls" type="number" min="1" max="10" placeholder="1-10">
+                            </div>
+                            <div>
+                                <label for="select-grade">Select Grade: </label>
+                                <select name="select-grade" id="select-grade">
+                                    <option value="A" selected>A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="F">F</option>
+                                </select>
+                            </div>
+                            <div>
+                                <button type="submit">Add</button>
+                                <button onclick="this.parentNode.parentNode.style.display='none'">Close</button>
+                            </div>
+                        </form>
+                        <form class="dlt-std-panel" id="dlt-std-panel">
+                            <h2>Delete Student</h2>
+                            <div>
+                                <label for="id">Enter Student ID: </label>
+                                <input name="id" id="stdd-id" type="text" placeholder="ID has to be unique" required>
+                            </div> 
+                            <div>
+                                <label for="name">Enter Student Name: </label>
+                                <input name="name" type="text" pattern="[A-Za-z ]+" id="stdd-name" required>
+                            </div>
+                            <div>
+                                <button type="button" onclick="deleteStudent(); return false;">Delete</button>
+                                <button onclick="this.parentNode.parentNode.style.display='none'">Close</button>
+                            </div>
+                        </form>
+                        <form class="upd-std-panel" id="upd-std-panel" method="post">
+                            <h2>Update Student Data</h2>
+                            <div id="upd-input">
+                                <label for="id">Enter Student ID: </label>
+                                <input name="id" id="stdu-id" type="number" placeholder="ID has to be unique" required>
+                            </div>
+                            <div>
+                                <button type="button" id="fetch" onclick="fetchSingleStudent()">Fetch Data</button>
+                            </div>
+                            <div id="fetched-row">
+                            </div>
+                            <div>
+                                <button type="submit">Update</button>
+                                <button type="button" onclick="this.parentNode.parentNode.style.display='none'">Close</button>
+                            </div>
+                        </form>
+                    </div> 
+                    <div class="filters">
+                        <h3>Apply Filters</h3>
+                        <div id="options">
+                            <select name="class-opt" id="class-opt" onchange="load_all_students(this)">
+                                <option value="0" selected>Select All Classes</option>
+                                <option value="1">Class 1</option>
+                                <option value="2">Class 2</option>
+                                <option value="3">Class 3</option>
+                                <option value="4">Class 4</option>
+                                <option value="5">Class 5</option>
+                                <option value="6">Class 6</option>
+                                <option value="7">Class 7</option>
+                                <option value="8">Class 8</option>
+                                <option value="9">Class 9</option>
+                                <option value="10">Class 10</option>
+                            </select>
+                        </div>
+                        <!--<div class="gender-filter">
+                            <select name="gender" id="gender">
+                                <option value="all" selected>All Genders</option>
+                                <option value="m">Male</option>
+                                <option value="f">Female</option>
+                            </select>
+                        </div>-->
+                        <div class="age-filter">
+                            <select name="age" id="age">
+                                <option value="all" selected>All Ages</option>
+                                <option value="below10">Less than 10years</option>
+                                <option value="10-12">10-12 years</option>
+                                <option value="13-15">13-15 years</option>
+                                <option value="16-18">16-18 years</option>
+                                <option value="18+">Above 18</option>
+                            </select>
+                        </div>
+                        <div class="grade-filter">
+                            <select name="grade" id="grade">
+                                <option value="all" selected>All Grades</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="F">F</option>
+                                <option value="A-D">All A-D</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 id="optheading"></h1>
+                        <div class="stdtable"><table id="std-list" cellpadding="5" border="0"></table></div>
+                    </div>
+                </div>
+            </div>
+            <div class="adm-teachers" id="adm-teachers">
+                <h1>Manage Teachers</h1>
+                <div id="tcr-filters">
+                    <label for="tftilters">Apply filters: </label>
+                    <div id="tftilters">
+                        <div id="tcr-age-filter">
+                            <select name="" id="agef">
+                                <option value="all">All Ages</option>
+                                <option value="20+">Above 20</option>
+                                <option value="21-25">21-25</option>
+                                <option value="26-30">26-30</option>
+                                <option value="31-40">31-40</option>
+                                <option value="40+">Above 40</option>
+                            </select>
+                        </div>
+                        <div id="tcr-date-filter">
+                            <label for="">Join Date: </label><input type="date" id="datef"> 
+                        </div>
+                        <!--<div id="tcr-sub-filter">
+                            <select name="" id="subjectf">
+                                <option value="all">All Subjects</option>
+                                <option value="Urdu">Urdu</option>
+                                <option value="English">English</option>
+                                <option value="Math">Math</option>
+                                <option value="Science">Science</option>
+                                <option value="Computer Science">Computer Science</option>
+                                <option value="Physics">Physics</option>
+                                <option value="Biology">Biology</option>
+                                <option value="Islamiyat">Islamiyat</option>
+                            </select>
+                        </div>-->
+                    </div>
+                </div>
+                <div class="tcrtable">
+                    <table id="tcr-list" cellpadding="5" border="0"></table>
+                </div>
+                <div class="tcrInputs" id="tcrInputs">
+                    <form class="tcrform" id="tcrform">
+                        <div>
+                            <label class="tcrlabels">Teacher ID: </label>
+                            <input type="number" id="tcrid" class="tcrinput">
+                            <button id="fetchTcr" type="button">Fetch</button>
+                        </div>
+                        <div>
+                            <label class="tcrlabels">Teacher Name: </label>
+                            <input type="text" id="tcrname" class="tcrinput">
+                        </div>
+                        <div>
+                            <label class="tcrlabels">Age: </label>
+                            <input type="number" id="tcrage" class="tcrinput">
+                        </div>
+                        <div>
+                            <label class="tcrlabels">Join Date: </label>
+                            <input type="date" id="tcrjoindate" class="tcrinput">
+                        </div>
+                        <!--<div>
+                            <label class="tcrlabels">Class: </label>
+                            <input type="number" id="tcrclass" class="tcrinput">
+                        </div>-->
+                        <!--<div>
+                            <label class="tcrlabels">Subject: </label>
+                            <input type="text" id="tcrsubject" class="tcrinput">
+                        </div>-->
+                        <div>
+                            <label class="tcrlabels">Email: </label>
+                            <input type="email" id="tcremail" class="tcrinput">
+                        </div>
+                        <div>
+                            <label>Actions: </label>
+                            <button id="tcr-add-btn" type="button">Add</button>
+                            <button id="tcr-upd-btn" type="button">Update</button>
+                            <button id="tcr-dlt-btn" type="button">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="adm-classes" id="adm-classes">
+                <h1>Manage Classes</h1>
+                <div class="classes-" style="text-align: center;">
+                    <div>
+                        <label for="">Fetch Classes Data</label>
+                        <select name="" id="cls-for-classes">
+                            <option value="0" selected>Select Class</option>
+                            <option value="1">Class 1</option>
+                            <option value="2">Class 2</option>
+                            <option value="3">Class 3</option>
+                            <option value="4">Class 4</option>
+                            <option value="5">Class 5</option>
+                            <option value="6">Class 6</option>
+                            <option value="7">Class 7</option>
+                            <option value="8">Class 8</option>
+                            <option value="9">Class 9</option>
+                            <option value="10">Class 10</option>
+                        </select>
+                        <select name="" id="data-opt">
+                            <option value="std" selected>Students</option>
+                            <option value="tcr">Teachers</option>
+                            <option value="subjects">Subjects</option>
+                        </select>
+                    </div>
+                    <div class="class-details" id="class-details">
+                        
+                    </div>
+                    <div>
+                        <button id="cls-edit-btn">Edit Class</button>
+                    </div>
+                </div>
+                <div class="cls-list" id="cls-list">
+                    <table class="cls-table" id="cls-table">
+                        
+                    </table>
+                </div>
+                <div class="edit-class-panel" id="edit-class-panel">
+                    <div class="pre-opts" id="pre-opts">
+                        <button id="add-sub-to-class-panel">Assign Subjects</button>
+                        <button id="add-std-to-class-panel">Add Students</button>
+                        <button id="close-btn">Close</button>
+                    </div>
+                    <div class="std-opt" id="std-opt">
+                        <label for="">Available Students</label>
+                        <select name="" id="std-opt-list" multiple>      
+                        </select>
+                        <div>
+                            <button id="add-std-to-class">Add Students</button>
+                            <button id="close-btn">Close</button>
+                        </div>
+                    </div>
+                    <div class="sub-opt" id="sub-opt">
+                        <label for="">Unassigned Subjects in this class</label>
+                        <select name="" id="sub-opt-list" multiple>
+                        </select>
+                        <div>
+                            <button id="add-sub-to-class">Assign Subjects</button>
+                            <button id="close-btn">Close</button>
+                        </div>
+                    </div>
+                    <div class="tcr-opt" id="tcr-opt">
+                        <select name="" id="tcr-opt-list">
+                        </select>
+                        <div>
+                            <button id="assign-tcr-to-sub">Assign Teacher to Subject</button>
+                            <button id="close-btn">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="adm-help" id="adm-help">
+            </div>
+        </div>
+    </div>
+</body>
+<script src="admin.js"></script>
+<script src="auth.js"></script>
+</html>

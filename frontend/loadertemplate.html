@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    :root {
+    /* Palette */
+    --page-bg: #071028; /* darker page background */
+    --card-bg: #0e1c45; /* lighter slate-teal card */
+    --text: #e8eef8; /* off-white */
+    --indigo: #7c83f7; /* primary accent */
+    --indigo-600: #5b4ff0; /* hover */
+    --indigo-700: #3f3aa8; /* active */
+    --input-bg: #f1f7ff; /* input background */
+    --placeholder: #475569; /* slate-600 */
+    --button-border: #d6dbff; /* light indigo border */
+    --link: #a1b0c4; /* link color */
+    --heading-text: #fbfdff; /* near-white */
+    /* RGB variants for rgba shadows */
+    --indigo-rgb: 124,130,247; /* indigo rgb */
+    --page-dark-rgb: 11,18,40; /* dark page rgb used in shadow */
+    /* Blue gradient centered around the deep indigo (--indigo-700) */
+    --blue-700: var(--indigo-700); /* deep blue center */
+    --blue-500: #6874db; /* mid indigo */
+    --blue-300: #5c73f5; /* lighter indigo */
+    --blue-gradient: linear-gradient(135deg, var(--indigo-700) 0%, var(--blue-500) 45%, var(--blue-300) 100%);
+}
+
+    body {
+        background: transparent;
+        background-color: var(--page-bg);
+        opacity: 70%;
+    }
+
+    .loader {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 1000;
+    }
+
+    .bar {
+        height: 12px;
+        width: 150px;
+        background: linear-gradient(90deg,var(--indigo-700) ,var(--indigo), var(--indigo-700));
+        color: black;
+        border-radius: 5px;
+        background-size: 200% 200%;
+        animation: loaderAnimation 1.2s ease infinite;
+    }
+
+    @keyframes loaderAnimation {
+        0% {background-position:0%}
+        50% {background-position:100%}
+        100% {background-position:0%}
+    }
+
+</style>
+<body>
+<div class="loaderbg" id="loaderbg">
+    <div class="loader" id="loader">
+        <p class="bar"></p>
+    </div>
+</div>    
+</body>
+</html>

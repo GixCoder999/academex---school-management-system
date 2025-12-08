@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS</title>
+</head>
+
+<link rel="stylesheet" href="home.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+<body>
+    <div class="hero-section">
+        <header class="header">
+            <div>
+                <h3>SCHOOL MANAGEMENT SYSTEM</h3>
+            </div>
+            <div class="navlinks">
+                <a href="index.html">Home</a>
+                <a href="frontend/about.html">About Us</a>
+                <a href="frontend/contacts.html">Contacts</a>
+                <a class="Login" href="frontend/signin_real.html">Login</a>
+            </div>
+        </header>
+        <div class="hero-content">
+            <h1>Welcome to Our<br>School Management<br>System</h1>
+            <p>Manage Students, Teachers and Classes Effortlessly.</p>
+            <div class="hero-btns">
+                <button class="login" onclick="location.href='frontend/signin_real.html'">Login to Dashboard</button>
+                <button  class="about" onclick="location.href='frontend/about.html'">Learn More</button>
+            </div>
+        </div>
+
+        <div class="cards">
+            <div class="left">
+                <div class="students">
+                    <i class="bi bi-mortarboard-fill"></i>
+                    <h3><a href="frontend/student_dashboard.html">Manage Students</a></h3>
+                    <p>Manage Student Data and Records</p>
+                </div>
+                <div class="teachers">
+                    <i class="bi bi-person-fill"></i>
+                    <h3><a href="frontend/teacher_dashboard.html">Manage Teachers</a></h3>
+                    <p>Manage Teachers and Creatives</p>
+                </div>
+            </div>
+            <div class="right">
+                <div class="classes">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    <h3><a href="frontend/admin_dashboard.html">Class Scheduling</a></h3>
+                    <p>Manage and Schedule Classes</p>
+                </div>
+                <div class="admin">
+                    <i class="bi bi-house-door-fill"></i>
+                    <h3><a href="frontend/admin_dashboard.html">Admin Panel</a></h3>
+                    <p>Administrative Tools and Settings</p>
+                </div>
+            </div>
+        </div>
+    </div>   
+</body>
+<script src="frontend/auth.js"></script>
+<script src="config.js"></script>
+</html>

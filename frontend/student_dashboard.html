@@ -1,0 +1,670 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS | Student Dashboard</title>
+    <style>
+        :root {
+            --primary-bg: #071028;
+            --secondary-bg: #0e1c45;
+            --text-color: #e8eef8;
+            --accent-color: #5b4ff0;
+            --hover-color: #3f3aa8;
+            --card-bg: #1a2342;
+            --border-color: #2a3560;
+            --danger-color: #dc3545;
+            --success-color: #28a745;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .alert-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .alert-box {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .alert-text {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .alert-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .alert-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .alert-button.ok {
+            background: #007bff;
+            color: white;
+        }
+
+        .alert-button.cancel {
+            background: #6c757d;
+            color: white;
+        }
+
+        .alert-button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--secondary-bg);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .school-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            background-color: var(--hover-color);
+        }
+
+        .user-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .profile-btn, .logout-btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            border: none;
+            cursor: default;
+        }
+
+        #std-pfp {
+            height: 140px;
+            width: 140px;
+            border-radius: 50%;
+        }
+
+        .logo > img {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+        }
+
+        .profile-btn {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .logout-btn {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .welcome-section {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .welcome-section h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .welcome-section p {
+            color: #a1b0c4;
+            font-size: 1.1rem;
+        }
+
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+        }
+
+        /* Student Info Section */
+        .student-info {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .student-info h2 {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        .info-grid {
+            display: grid;
+            gap: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #a1b0c4;
+        }
+
+        .info-value {
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .student-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 20px auto;
+            border: 3px solid var(--accent-color);
+            background-color: var(--secondary-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            font-size: 14px;
+        }
+
+        /* Subjects Section */
+        .subjects-section {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .subjects-section h2 {
+            color: var(--text-color);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .subject-card {
+            background-color: var(--secondary-bg);
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .subject-card h3 {
+            color: var(--text-color);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .subject-card p {
+            color: #a1b0c4;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .view-marks-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: 500;
+            width: 100%;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        .view-marks-btn:hover {
+            background-color: var(--hover-color);
+        }
+
+        /* Marks Display Section */
+        .marks-section {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .marks-section h2 {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        .marks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .mark-card {
+            background-color: var(--secondary-bg);
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .mark-subject {
+            font-weight: bold;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+
+        .mark-grade {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .mark-score {
+            color: #a1b0c4;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--secondary-bg);
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid var(--border-color);
+            margin-top: auto;
+        }
+
+        .footer p {
+            color: #a1b0c4;
+            font-size: 0.9rem;
+        }
+
+        .copyright {
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        /* POPUP STYLES - ADDED */
+        .table-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80%;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--danger-color);
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn:hover {
+            background: #c82333;
+        }
+
+        .popup-title {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .table-wrapper {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            color: var(--text-color);
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--secondary-bg);
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        td {
+            color: #a1b0c4;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .subjects-grid,
+            .marks-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .popup-content {
+                width: 95%;
+                padding: 20px;
+            }
+            
+            th, td {
+                padding: 8px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo-container">
+            <div class="logo">
+                <img src="/backend/uploads/sms_logo.jpg" alt="">
+            </div>
+            <div class="school-name">Student Management System</div>
+        </div>
+        
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contacts.html">Contacts</a>
+        </div>
+        
+        <div class="user-section">
+            <!--<button class="profile-btn">My Profile</button>-->
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="welcome-section">
+            <h1>Student Dashboard</h1>
+            <p>Welcome to your student portal</p>
+        </div>
+        
+        <div class="dashboard-container">
+            <!-- Left: Student Personal Data -->
+            <div class="student-info">
+                <h2>Student Information</h2>
+                
+                <div class="student-photo">
+                    <img src="" alt="" id="std-pfp">
+                </div>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Student_ID:</span>
+                        <span class="info-value" id="student_id">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Student Name:</span>
+                        <span class="info-value" id="student_name">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Age:</span>
+                        <span class="info-value" id="student_age">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Class Name:</span>
+                        <span class="info-value" id="class_name">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Class_ID:</span>
+                        <span class="info-value" id="class_id">-</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right: Subjects Cards -->
+            <div class="subjects-section">
+                <h2>My Subjects</h2>
+                <div class="subjects-grid" id="subjects-container">
+                    <!-- Subjects will be loaded dynamically here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; <span class="copyright">Student Management System</span></p>
+        <p>All rights reserved</p>
+    </div>
+
+    <!-- POPUP HTML - ADDED HERE -->
+    <div class="table-popup" id="table-popup"> 
+        <div class="popup-content" id="popup-content">
+            <button class="close-btn" onclick="hideExamPopup()">X</button>
+            <h2 class="popup-title">Exam Details</h2>
+            <div class="table-wrapper">
+                <table id="exam-table">
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Student Name</th>
+                            <th>Class Number</th>
+                            <th>Subject Name</th>
+                            <th>Obtained Marks</th>
+                            <th>Total Marks</th>
+                            <th>Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody id="exam-body">
+                        <!-- Dynamic Exam Record -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        //for checking the flow 
+//       subjectsArray = [{name : "Mohib", teacher : "Mr. AbdulMateen", class : "OOP"}]
+
+//        	const container = document.getElementById('subjects-container');
+// 	subjectsArray.forEach(subject =>
+// 	{
+// 	   const card = document.createElement('div');
+// 	   card.className = 'subject-card' ;
+	   
+// 	     card.innerHTML = `
+//         <h3>${subject.name}</h3>
+//         <p>Teacher: ${subject.teacher}</p>
+//         <p>Class: ${subject.class}</p>
+//         <button class="view-marks-btn" onclick="showMarks('${subject.name}')">
+//             View Marks
+//         </button>
+//     `;
+//         container.appendChild(card);  
+	   	
+// 	});
+    
+//    function showMarks(subjectName) {
+//     // Show popup
+//     document.getElementById('table-popup').style.display = 'flex';
+    
+//     // Clear table
+//     const tbody = document.getElementById('exam-body');
+//     tbody.innerHTML = '';
+    
+//     // Create one row
+//     const row = document.createElement('tr');
+    
+//     // Create one cell that spans all columns
+//     const cell = document.createElement('td');
+//     cell.colSpan = 7; // This makes it span 7 columns
+    
+//     // Add h3 inside the cell
+//     //cell.innerHTML = '<h3 style="text-align:center; color:white; padding:40px;">No Record Found</h3>';
+//     cell.innerHTML = '<h3>No Record Found</h3>';
+    
+//     // Add cell to row
+//     row.appendChild(cell);
+    
+//     // Add row to table
+//     tbody.appendChild(row);
+// }function hideExamPopup() {
+//     document.getElementById('table-popup').style.display = 'none';
+// }
+    </script>
+    <script src="studentfrontend.js"></script>
+</body>
+</html>
