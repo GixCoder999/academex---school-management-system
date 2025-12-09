@@ -285,7 +285,7 @@
                         </div>
                         <div>
                             <label class="tcrlabels">Teacher Name: </label>
-                            <input type="text" id="tcrname" class="tcrinput">
+                            <input type="text" pattern="[A-Za-z ]+" id="tcrname" class="tcrinput" >
                         </div>
                         <div>
                             <label class="tcrlabels">Age: </label>
@@ -309,9 +309,9 @@
                         </div>
                         <div>
                             <label>Actions: </label>
-                            <button id="tcr-add-btn" type="button">Add</button>
-                            <button id="tcr-upd-btn" type="button">Update</button>
-                            <button id="tcr-dlt-btn" type="button">Delete</button>
+                            <button id="tcr-add-btn" type="submit" onclick="this.preventDefaul(); return;">Add</button>
+                            <button id="tcr-upd-btn" type="submit" onclick="this.preventDefaul();return ;">Update</button>
+                            <button id="tcr-dlt-btn" type="submit">Delete</button>
                         </div>
                     </form>
                 </div>

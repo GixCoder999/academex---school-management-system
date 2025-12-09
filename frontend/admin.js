@@ -236,11 +236,12 @@ async function load_all_students(el) {
     }
 }
 
-function  stdAlreadyExists(name,age,clss,grade) {
+function stdAlreadyExists(name,age,clss,grade) {
+    load_all_students(document.getElementById('class-opt'));
     let olds = globData.find(s=>  s.name==name &&
             s.age==age && s.class_id==clss && s.grade==grade
     );
-    console.log(olds);
+    console.log("olds",olds);
     if (olds) return true
     return false;
 }
@@ -979,10 +980,16 @@ document.getElementById("fetchTcr").addEventListener("click",()=>{
 });
 
 document.getElementById("tcr-add-btn").addEventListener("click",()=>{
+    this.preventDefault();
+    this.checkValidity();
+    this.reportValidity();
     addTeacher();
 });
 
 document.getElementById("tcr-upd-btn").addEventListener("click",()=>{
+    this.preventDefault();
+    this.checkValidity();
+    this.reportValidity();
     updateTeacher();
 });
 
