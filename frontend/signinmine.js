@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:3001';
+const API_BASE = 'https://academex-school-management-system-production.up.railway.app';
 
 function Alert(text, type = 'S') {
     return new Promise((resolve) => {

@@ -4,10 +4,12 @@ const cors = require('cors');
 const db = require('./db');  // adjust relative path
 
 const app = express();
-app.use(cors({ origin: 'http://127.0.0.1:5500',
+app.use(cors({ 
+    origin: process.env.FRONTEND_URL,
     methods: ['GET', 'POST', 'DELETE','PUT','PATCH'],
     allowedHeaders: ['Content-Type','Authorization']
- }));
+}));
+
 
 app.use(express.json());
 

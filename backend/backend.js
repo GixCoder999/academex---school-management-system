@@ -2,9 +2,11 @@ const db = require('./db');  // adjust relative path
 const express = require('express');
 const app = express();
 app.use(express.json());
+const path = require('path');
 
 module.exports = (app) => {
-    app.use('/uploads', express.static('uploads'));
+    
+    app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
     app.get('/getProfilePic', async (req, res) => {
         const username = req.query.name;
