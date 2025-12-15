@@ -102,7 +102,7 @@ app.get('/posts' , (req,res) =>
             case 9: return '9th';
             case 10: return '10th';
         }
-        return
+        return;
     }
 
     app.post('/addStudent',async (req, res) => {
