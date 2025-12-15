@@ -1,14 +1,12 @@
 const cron = require('node-cron');
-const db = require('./db');
+const db = require('./db'); // must be promise pool
 
-// Run every hour at minute 0
-module.exports = async  ()=> { //0 * * * *
-    cron.schedule('*/1 * * * *', async () => {
+module.exports = () => {
+  cron.schedule('*/1 * * * *', async () => {
     console.log('⏰ Running login credentials generation job...');
 
     try {
-        // Insert login credentials for students created in last hour
-        db.query(`
+      const [result] = await db.query(`
         INSERT INTO login_credentials (username, password_hash, role, profile_pic)
         SELECT
             username,
@@ -17,13 +15,11 @@ module.exports = async  ()=> { //0 * * * *
             CONCAT('uploads/', username, '.jpg') AS profile_pic
         FROM students
         WHERE created_at >= NOW() - INTERVAL 1 HOUR
-        `,(err,result)=>{
-            console.log(`✅ Login credentials generated for ${result.affectedRows} students`);
-        });
+      `);
 
-        
+      console.log(`✅ Login credentials generated for ${result.affectedRows} students`);
     } catch (err) {
-        console.error('❌ Error generating login credentials:', err);
+      console.error('❌ Error generating login credentials:', err);
     }
-    });
-}
+  });
+};
