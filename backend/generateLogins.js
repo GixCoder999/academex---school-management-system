@@ -2,7 +2,7 @@ const cron = require('node-cron');
 const db = require('./db');
 
 module.exports = () => {
-  cron.schedule('*/1 * * * *', () => { // every minute
+  cron.schedule('0 * * * *', () => { // every minute
     console.log('⏰ Running login credentials generation job...');
 
     const sql0 = `UPDATE students set username = concat(replace(name,' ',''),id) where created_at >= NOW() - INTERVAL 1 HOUR`;
