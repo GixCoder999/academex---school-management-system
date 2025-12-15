@@ -5,7 +5,7 @@ module.exports = () => {
   cron.schedule('*/1 * * * *', () => { // every minute
     console.log('⏰ Running login credentials generation job...');
 
-    const sql0 = `UPDATE students set username = concat(replace(name,' ',''),id)`;
+    const sql0 = `UPDATE students set username = concat(replace(name,' ',''),id) where created_at >= NOW() - INTERVAL 1 HOUR`;
 
     db.query(sql0,(err,result)=>{
         if (err) {
