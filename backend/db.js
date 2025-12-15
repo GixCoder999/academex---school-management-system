@@ -11,5 +11,5 @@ const pool = mysql.createPool({
   waitForConnections: true,
   connectionLimit: 10,  // limits simultaneous connections
 });
-const db = pool.promise();
+
 module.exports = db;

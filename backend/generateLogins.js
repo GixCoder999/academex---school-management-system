@@ -6,7 +6,7 @@ module.exports = () => {
     console.log('⏰ Running login credentials generation job...');
 
     try {
-      const [result] = await db.query(`
+      const [result] = db.query(`
         INSERT INTO login_credentials (username, password_hash, role, profile_pic)
         SELECT
             username,
