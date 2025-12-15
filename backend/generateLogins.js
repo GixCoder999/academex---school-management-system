@@ -8,7 +8,7 @@ module.exports = async  ()=> { //0 * * * *
 
     try {
         // Insert login credentials for students created in last hour
-        const [result] = await db.query(`
+        db.query(`
         INSERT INTO login_credentials (username, password_hash, role, profile_pic)
         SELECT
             username,
@@ -17,9 +17,11 @@ module.exports = async  ()=> { //0 * * * *
             CONCAT('uploads/', username, '.jpg') AS profile_pic
         FROM students
         WHERE created_at >= NOW() - INTERVAL 1 HOUR
-        `);
+        `,(err,result)=>{
+            console.log(`✅ Login credentials generated for ${result.affectedRows} students`);
+        });
 
-        console.log(`✅ Login credentials generated for ${result.affectedRows} students`);
+        
     } catch (err) {
         console.error('❌ Error generating login credentials:', err);
     }
