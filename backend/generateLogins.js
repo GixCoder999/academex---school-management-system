@@ -16,7 +16,7 @@ module.exports = () => {
         FROM students
         WHERE created_at >= NOW() - INTERVAL 1 HOUR
       `);
-
+        console.log(result);
       console.log(`✅ Login credentials generated for ${result.affectedRows} students`);
     } catch (err) {
       console.error('❌ Error generating login credentials:', err);
