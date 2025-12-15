@@ -294,15 +294,84 @@ async function showMarks(subject_id,subjectName)
 	});
 }
 
-function hideExamPopup()
-{
-	document.getElementById('table-popup').style.display = 'none';
+
+
+
+async function loadAnnouncements() {
+    try {
+       const response = await fetch(`${API_BASE}/posts?audience=students`);
+        
+        const data = await response.json();
+        console.log(data);
+        if (data.success && data.results && data.results.length > 0) {
+            displayAnnouncements(data.results);
+            return;
+        }
+        displayNoAnnouncements();
+    } catch (error) {
+        console.error('Failed to load announcements:', error);
+        displayNoAnnouncements();
+    }
 }
 
 
+function displayAnnouncements(announcements) {
+    const contentArea = document.getElementById('announcement-content-area');
+    contentArea.innerHTML = '';
+    
+    announcements.forEach((announcement, index) => {
+        const announcementCard = document.createElement('div');
+        announcementCard.className = 'announcement-card';
+        announcementCard.innerHTML = `
+            <div class="announcement-header">
+                <h3>${index + 1}. ${announcement.title || 'No Title'}</h3>
+                <span class="announcement-date">${announcement.created_at || 'Date not available'}</span>
+            </div>
+            <div class="announcement-body">
+                <p>${announcement.ndescription || announcement.description || 'No description available'}</p>
+            </div>
+            <div class="announcement-footer">
+                <span class="audience-tag">For: ${announcement.audience || 'ALL'}</span>
+            </div>
+        `;
+        contentArea.appendChild(announcementCard);
+    });
+    
+  
+    document.getElementById('announcement-popup').style.display = 'flex';
+}
 
 
+function displayNoAnnouncements() {
+    const contentArea = document.getElementById('announcement-content-area');
+    contentArea.innerHTML = `
+        <div class="no-announcements">
+            <i class="bi bi-inbox"></i>
+            <h3>No Announcements</h3>
+            <p>There are no announcements at the moment.</p>
+            <p>Check back later for updates.</p>
+        </div>
+    `;
+    
+    
+    document.getElementById('announcement-popup').style.display = 'flex';
+}
 
 
+function hideAnnouncementPopup() {
+    document.getElementById('announcement-popup').style.display = 'none';
+}
 
 
+function showAnnouncementPopup() {
+    loadAnnouncements();
+}
+
+
+function hideExamPopup() {
+    document.getElementById('table-popup').style.display = 'none';
+}
+
+function changePassword() {
+        window.location.href = 'SetupPassword.html'; 
+}

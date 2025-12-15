@@ -236,16 +236,6 @@ async function load_all_students(el) {
     }
 }
 
-function stdAlreadyExists(name,age,clss,grade) {
-    load_all_students(document.getElementById('class-opt'));
-    let olds = globData.find(s=>  s.name==name &&
-            s.age==age && s.class_id==clss && s.grade==grade
-    );
-    console.log("olds",olds);
-    if (olds) return true
-    return false;
-}
-
 function renderStudentsTable(data,dest) {
     let table = `<tr class="head-row"><th>ID</th><th>Name</th><th>Age</th><th>Class</th><th>Grade</th></tr>`;
     let i=0;
@@ -372,12 +362,7 @@ async function addStudent() {
         Class : clss,
         Grade : grade
     }
-
-    if (stdAlreadyExists(student.Name,student.Age,student.Class,student.Grade)) {
-        await Alert("Student Data already exists");
-        return;
-    }
-
+  
     console.log(student);
 
     try {

@@ -26,6 +26,46 @@ module.exports = (app) => {
             }
         });
     });
+//Change password request
+app.post('/resetpassword' , (req,res) =>
+{
+    console.log('Hellow')
+     const {username , password} = req.body;
+     const query = 'UPDATE login_credentials SET password_hash = ? WHERE username = ?';
+     db.query(query , [password, username] , (error , results) =>
+    {
+        if(error)
+        return res.json({success: false , message:'Couldnot reset password'});
+       
+        return res.json({success:true , message:'Password Reset Successfully'});
+
+    }); 
+});
+
+
+
+// Notices / Annoucments wali 
+
+
+app.get('/posts' , (req,res) =>
+{
+    const audience = 'students'; 
+    
+    const query = 'SELECT title , ndescription FROM notices WHERE audience = ?'
+    
+    db.query(query , [audience] , (error , results) =>  
+	{
+	    if(error)
+		    return res.json({success: false , message: 'No Notices to Show'});
+        
+        if(results.length === 0)
+            return res.json({success: false , message: 'No Notices to Show'});
+            
+		return res.json({success: true , results});	
+	});
+		
+});
+
 
     app.get('/studentsByClass',async (req, res) => {
         const class_id = req.query.class;
