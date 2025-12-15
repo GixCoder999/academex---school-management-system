@@ -108,11 +108,12 @@ app.get('/posts' , (req,res) =>
     app.post('/addStudent',async (req, res) => {
         const {Name, Age, Class, Grade} = req.body;
         let que='';
+        const dummmyUsername = 'abcdefgh'
         if (Class) {
-            que = `INSERT INTO students (name, age, class_id, grade, class) VALUES (?, ?, ?, ?, ?)`;
+            que = `INSERT INTO students (name, age, class_id, grade, class, username) VALUES (?, ?, ?, ?, ?, ?)`;
             const clss = stringifyClassId(Class);
             console.log(clss);
-            db.query(que, [Name, Age, Class, Grade, clss], (err, result) => {
+            db.query(que, [Name, Age, Class, Grade, clss, dummmyUsername], (err, result) => {
                 if (err) {
                     console.log(err);
 
@@ -184,8 +185,8 @@ app.get('/posts' , (req,res) =>
                 } 
                 else {
                     res.status(401).json({  // 401 Unauthorized is better than 500
-                        success: false,
-                        message: 'Login Not Successful'
+                        success: true,
+                        message: 'Invalid Credentials'
                     });
                 }
             }
