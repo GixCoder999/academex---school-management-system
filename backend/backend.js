@@ -116,7 +116,9 @@ app.get('/posts' , (req,res) =>
             db.query(que, [Name, Age, Class, Grade, clss, dummmyUsername], (err, result) => {
                 if (err) {
                     console.log(err);
-
+                    if (err.errno==1062) {
+                        return res.status(500).json({message:'Student data already exists.'});
+                    }
                     res.status(500).json({message:'Error adding student'});
                 } else {
                     res.status(200).json({message:'Student added successfully'});
@@ -124,8 +126,8 @@ app.get('/posts' , (req,res) =>
             });
         }
         else {
-            que = `INSERT INTO students (name, age, class_id, grade) VALUES (?, ?, ?, ?)`;
-            db.query(que, [Name, Age, null, Grade], (err, result) => {
+            que = `INSERT INTO students (name, age, class_id, grade, username) VALUES (?, ?, ?, ?, ?)`;
+            db.query(que, [Name, Age, null, Grade, dummmyUsername], (err, result) => {
                 if (err) {
                     console.log(err);
                     res.status(500).json({message:'Error adding student'});
@@ -141,6 +143,15 @@ app.get('/posts' , (req,res) =>
     app.delete('/deleteStudent',async (req, res) => {
         const id = Number(req.query.id);
         const name = req.query.name;
+
+        const preque = `DELETE from login_credentials where username = (select username from students where id = ? and name = ?)`;
+
+        db.query(preque,[id,name],(err,result)=>{
+            if (err) {
+                console.log(err);
+                return res.status(500).send('Error deleting student');
+            }
+        });
 
         const que = `DELETE FROM students WHERE id = ? AND name = ?`;
         db.query(que, [id, name], (err, result) => {

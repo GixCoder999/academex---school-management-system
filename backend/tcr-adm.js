@@ -15,12 +15,14 @@ module.exports = (app) => {
 
     app.post('/addTeacher',async (req,res)=>{
         const {tname,tage,tdate,tmail} = req.body;
-        const que = 'INSERT INTO teachers (name,age,joindate,email) VALUES (?,?,?,?)';
+        const dummmyUsername = 'abcdefg';
+        const que = 'INSERT INTO teachers (name,age,joindate,email,username) VALUES (?,?,?,?,?)';
         //console.log(tname,tage,tdate);
-        db.query(que,[tname,tage,tdate,tmail],(err,result)=>{
+        db.query(que,[tname,tage,tdate,tmail,dummmyUsername],(err,result)=>{
             if (err) { 
-                if (err.errno==1062) res.json({status:false,msg:"Email Cannot be Duplicate"});
-                else res.json({status:false,msg:'An internal server error occurred'});
+                if (err.errno==1062) return res.json({status:false,msg:"Teacher Already Exists / Email Cannot be Duplicate"});
+                
+                return res.json({status:false,msg:'An internal server error occurred'});
             }
             else {
                 res.json({status:true,msg:"Teacher Added Successfuly"});
@@ -45,7 +47,15 @@ module.exports = (app) => {
     app.delete('/deleteTeacher',async (req,res) =>{
         const teacher_id = Number(req.query.id);
         const teacher_name = req.query.name ;
+
+        const preque = `DELETE from login_credentials where username = (select username from teachers where teacher_id = ? and name = ?)`
         
+        db.query(preque,[teacher_id,teacher_name],(err,result)=>{
+            if (err) {
+                return res.status(500).send('Error deleting teacher');
+            }
+        });
+
         const querydelete = 'DELETE FROM teachers WHERE teacher_id = ? AND name = ?'
         db.query(querydelete , [teacher_id ,teacher_name] , (err, result)=>{
             if (err) {
