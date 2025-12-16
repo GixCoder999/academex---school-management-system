@@ -49,11 +49,11 @@ app.post('/resetpassword' , (req,res) =>
 
 app.get('/posts' , (req,res) =>
 {
-    const audience = 'students'; 
+    const audience = req.query.audience; 
+    const xyz = 'all';
+    const query = 'SELECT title , ndescription, audience FROM notices WHERE audience = ? or audience = ?'
     
-    const query = 'SELECT title , ndescription FROM notices WHERE audience = ?'
-    
-    db.query(query , [audience] , (error , results) =>  
+    db.query(query , [audience,xyz] , (error , results) =>  
 	{
 	    if(error)
 		    return res.json({success: false , message: 'No Notices to Show'});

@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMS | Teacher Dashboard</title>
+    <link rel="stylesheet" href="teacher_dashboard.css">
 </head>
-<link rel="stylesheet" href="teacher_dashboard.css">
 <body>
     <div class="header">
         <div class="h-links">
@@ -16,32 +16,34 @@
             <a href="contacts.html">Contacts</a>
             <a href="support.html">Support</a>
         </div>
+         <div class="user-section">
+            <button class="change-password-btn" onclick="changePassword()">
+                <i class="bi bi-key-fill"></i> Change Password
+            </button>
+            
+            <button class="announcement-btn" onclick="showAnnouncementPopup()">
+                <i class="bi bi-bell-fill"></i> Announcements
+            </button>
+             <button id="logout-btn" onclick="logout()">Logout</button>
+        </div>
         <div class="h-buttons">
-            <button id="logout-btn" onclick="logout()">Logout</button>
-            <button id="signin-btn">Signin</button>
             <div class="img">
                 <img id="user-img" src="../backend/uploads/user.png" alt="User">
             </div>
         </div>
     </div>
+
     <div class="main-section">
         <h1>Welcome Back!</h1>
         <div class="main-content" id="main-content">
             <h2>Your Classes</h2>
             <div id="classes-container">
-                <!-- Classes will be dynamically loaded here -- listen in teacher.js file send request to backend and 
-                 get the classes assigned to the logged in teacher and display them here max classes limit is 5 by 
-                 default and its hard coded
-                 run this html file in browser to see how design of a class would look. below is code: example-->
                 <div id="class-cards" class="class-cards">
                     <div class="class-card">
                         <h3>Class 10A</h3>
                         <p>Subject: Mathematics</p>
                         <p>Students: 30</p>
                         <button class="view-class-btn">View Class</button>
-                        <!--on clicking this button show a popup window template is written below,also addeventlistener 
-                        to this for each class maybe using foreach loop and queryselectorall DOM 
-                        do following: load all the student rows-->
                     </div>
                 </div>
             </div>
@@ -49,20 +51,11 @@
             <div class="table-popup" id="table-popup">
                 <div class="popup-content" id="popup-content">
                     <span class="close-btn" id="close-btn" onclick="this.parentNode.parentNode.style.display='none'">&times;</span>
-
                     <h2 class="popup-title">Class Details</h2>
-
                     <div class="table-wrapper" id="table-wrapper">
                         <table id="students-table">
-                            
-                                <!--in actions there will be a button of Edit Marks, which 
-                                on click will ask for the subject for which he wants to update marks --
-                                subjects list will be in the form of a select option which would be 
-                                generated dynamically from backend, on selecting subject take marks as input
-                                for that student...thats it-->
                             <tbody id="students-body">
-                                <!-- Dynamic rows -->
-                            </tbody>
+                                </tbody>
                         </table>
                     </div>
                 </div>
@@ -77,12 +70,10 @@
             <h3>Select a subject: </h3>
         </div>
         <select name="" id="subjects-list">
-            
         </select>
         <button id="view-class-stds">View Students</button>
     </div>
         
-        <!-- Edit Marks Modal -->
     <div id="edit-marks-modal" class="edit-marks-modal">
         <form class="edit-modal-content" id="edit-marks-form" method="post">
             <h2>Edit Marks</h2>
@@ -101,6 +92,16 @@
                 <button id="cancel-edit-btn" type="button" onclick="this.parentNode.parentNode.parentNode.style.display='none'">Cancel</button>
             </div>
         </form>
+    </div>
+
+     <div class="announcement-popup" id="announcement-popup">
+        <div class="popup-content">
+            <button class="close-btn" onclick="hideAnnouncementPopup()">&times;</button>
+            <h2 class="popup-title"><i class="bi bi-megaphone-fill"></i> School Announcements</h2>
+            <div class="announcement-wrapper" id="announcement-content-area">
+                
+                </div>
+        </div>
     </div>
 
 </body>
