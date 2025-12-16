@@ -34,7 +34,7 @@ module.exports = () => {
       }
     });
 
-    const sql1 = `UPDATE teachers set username = concat(replace(teacher_name,' ',''),teacher_id) where created_at >= NOW() - INTERVAL 1 HOUR`;
+    const sql1 = `UPDATE teachers set username = concat(replace(name,' ',''),teacher_id) where created_at >= NOW() - INTERVAL 1 HOUR`;
 
     db.query(sql1,(err,result)=>{
         if (err) {
