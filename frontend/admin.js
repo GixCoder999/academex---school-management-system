@@ -966,15 +966,11 @@ document.getElementById("fetchTcr").addEventListener("click",()=>{
 
 document.getElementById("tcr-add-btn").addEventListener("click",(e)=>{
     e.preventDefault();
-    e.checkValidity();
-    e.reportValidity();
     addTeacher();
 });
 
 document.getElementById("tcr-upd-btn").addEventListener("click",(e)=>{
     e.preventDefault();
-    e.checkValidity();
-    e.reportValidity();
     updateTeacher();
 });
 
