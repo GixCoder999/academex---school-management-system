@@ -960,21 +960,40 @@ function tcrFilters() {
     renderTeachersTable();
 }
 
+const form = document.getElementById("tcrform");
+
+function validateForm() {
+    if (!form.checkValidity()) {
+        form.reportValidity(); // shows native messages
+        return false;
+    }
+    return true;
+}
+
 document.getElementById("fetchTcr").addEventListener("click",()=>{
     fetchSingleTeacher(tcrData);
 });
 
-document.getElementById("tcr-add-btn").addEventListener("click",(e)=>{
-    e.preventDefault();
+document.getElementById("tcr-add-btn").addEventListener("click", (e) => {
+    e.preventDefault(); // no reload
+    if (!validateForm()) return;
     addTeacher();
 });
 
-document.getElementById("tcr-upd-btn").addEventListener("click",(e)=>{
+document.getElementById("tcr-upd-btn").addEventListener("click", (e) => {
     e.preventDefault();
+    if (!validateForm()) return;
     updateTeacher();
 });
 
-document.getElementById("tcr-dlt-btn").addEventListener("click",()=>{
+document.getElementById("tcr-dlt-btn").addEventListener("click", (e) => {
+    e.preventDefault();
+
+    if (!document.getElementById("tcrid").checkValidity()) {
+        document.getElementById("tcrid").reportValidity();
+        return;
+    }
+
     deleteTeacher();
 });
 
