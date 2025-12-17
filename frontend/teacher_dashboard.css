@@ -397,6 +397,8 @@ body {
 /* Subjects Container */
 #subjects-container {
     display: none;
+    flex-direction: column;
+    gap: 10px;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -404,7 +406,7 @@ body {
     background-color: var(--card-bg);
     border-radius: 12px;
     padding: 2rem;
-    width: 90%;
+    width: 60%;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
     z-index: 1100;
     animation: fadeIn 0.3s ease-out;
