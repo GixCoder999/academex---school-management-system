@@ -80,6 +80,7 @@ module.exports = (app)=> {
             que = `INSERT INTO notices (title, ndescription, audience) VALUES (?, ?, ?)`;
             db.query(que, [title, description, audience], (err, result) => {
                 if (err) {
+                    if (err.errno==1062) return res.json({status:false,message:"Cannot add duplicate notice"});
                     console.log(err);
                     return res.json({ status: false, message: "An internal server error occurred" });
                 }
