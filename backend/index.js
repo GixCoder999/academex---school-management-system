@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const db = require('./db');  // adjust relative path
 
-const startLoginCron = require('./generateLogins'); // your cron module
+//const startLoginCron = require('./generateLogins'); // your cron module
 
 const app = express();
 app.use(cors({ 
@@ -15,7 +15,7 @@ app.use(cors({
 
 app.use(express.json());
 
-startLoginCron();
+//startLoginCron();
 
 require('./backend')(app);
 require('./cls-adm')(app);

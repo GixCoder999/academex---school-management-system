@@ -26,6 +26,29 @@ module.exports = (app) => {
             }
         });
     });
+
+//Ye default credentials wali request hai
+
+app.post('/adduser' , (req,res) =>
+{
+     const {username , role , id }	= req.body;
+     
+     const upload = 'upload/' + username+ '.jpg'
+     const password = (username + id).replace(/\s+/g, '');
+     const query = 'INSERT INTO login_credentials VALUES (? , ? ,?,?)'
+     
+       db.query(query, [username, password, role, upload], (error, results) => {
+        if (error) {
+		 
+		 return res.json({success:false , message:'Failed to add default user to database'}); 
+		}
+		return res.json({success : true , message: 'Success'}); });
+});
+
+
+
+
+
 //Change password request
 app.post('/resetpassword' , (req,res) =>
 {

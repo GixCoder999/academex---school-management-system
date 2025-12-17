@@ -1,4 +1,4 @@
-const cron = require('node-cron');
+/*const cron = require('node-cron');
 const db = require('./db');
 
 module.exports = () => {
@@ -65,3 +65,4 @@ module.exports = () => {
   });
 
 };
+*/

@@ -2,6 +2,28 @@ const API_BASE = 'https://academex-school-management-system-production.up.railwa
 
 let globData=[];
 
+
+//Default Credentials wala add kiya
+async function addUser(userData) {
+    try {
+        const response = await fetch(`${API_BASE}/adduser`, { 
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userData)
+        });
+        const result = await response.json();  
+        return result;
+    }
+    catch(error)
+    {
+    	console.log('Error for developer ke liye sirf');
+	}
+}
+
+
+
 function Alert(text, type = 'S') {
     return new Promise((resolve) => {
         // Create overlay
@@ -331,6 +353,11 @@ function resetAddFields() {
     document.getElementById("stdu-id").value = '';
 }
 
+
+
+
+
+
 async function addStudent() {
     const name = document.getElementById("std-name").value;
     const age = document.getElementById("std-age").value;
@@ -380,7 +407,7 @@ async function addStudent() {
         console.error('Error:', error);
         await Alert('Error sending request');
     }
-
+    await addUser({usernmae:student.Name,role:'student',id:student.Age});
     resetAddFields();
     load_all_students(document.getElementById('class-opt'));
     //window.location.preventDefault();
@@ -834,6 +861,7 @@ async function addTeacher() {
         if (msg.status) {
             await Alert("Teacher Added Successfully");
             loadAllTeachers();
+            await addUser({username:t.tname,role:'teacher',id:t.tage});
         }
         else await Alert(msg.msg);
     }
