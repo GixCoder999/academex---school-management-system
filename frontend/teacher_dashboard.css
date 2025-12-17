@@ -687,6 +687,10 @@ body {
     background-color: red;
     border: none;
     border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: white;
+    padding: 1rem;
     position: absolute;
     right: 20px;
     top: 20px;
