@@ -45,6 +45,9 @@ async function setPassword()
 		{ 
 		   alert(result.message); 
 		   sessionStorage.removeItem('username');
+		   sessionStorage.removeItem('authToken');
+		   sessionStorage.removeItem('profilePicPath');
+		   sessionStorage.removeItem('role');
 		   window.location.href = 'home.html' ;
            return;
 		}

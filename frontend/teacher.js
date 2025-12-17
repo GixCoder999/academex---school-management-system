@@ -427,7 +427,7 @@ document.addEventListener('DOMContentLoaded', async ()=> {
 
 async function loadAnnouncements() {
     try {
-       const response = await fetch(`${API_BASE}/posts1?audience=teachers`);
+       const response = await fetch(`${API_BASE}/posts?audience=teachers`);
         
         const data = await response.json();
         console.log(data);
@@ -496,6 +496,6 @@ function showAnnouncementPopup() {
 }
 
  function changePassword() {
-            window.location.href = 'SetupPassword.html'; 
-        }
+    window.location.href = 'SetupPassword.html'; 
+}
 
