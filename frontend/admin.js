@@ -401,9 +401,9 @@ async function fetchSingleStudent() {
     }
     let el=document.getElementById("fetched-row");
     el.innerHTML = `<label>Name: </label><input type="text" id="upd-name" pattern="^[A-Za-z]+( [A-Za-z]+)*$" value="${student.name}">
-                    <label>Age: </label><input type="number" id="upd-age" value="${student.age}">
-                    <label>Class: </label><input type="text" id="upd-class" value="${student.class}">
-                    <label>Grade: </label><input type="text" id="upd-grade" value="${student.grade}">`;
+                    <label>Age: </label><input type="number" min="5" max="25" placeholder="5-25" id="upd-age" value="${student.age}">
+                    <label>Class: </label><input type="text" min="1" max="10" placeholder="1-10" id="upd-class" value="${student.class}">
+                    <label>Grade: </label><input type="text" id="upd-grade" value="${student.grade}" disabled>`;
 
 
     await Alert("Please read these instructions carefully! Only modify the fields you want to update. Be cautious while entering data as updating with incorrect values may lead to data inconsistency. If you wish to cancel the update process, simply refresh the page and fetch the student data again.");
