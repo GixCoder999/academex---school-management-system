@@ -402,7 +402,7 @@ async function fetchSingleStudent() {
     let el=document.getElementById("fetched-row");
     el.innerHTML = `<label>Name: </label><input type="text" id="upd-name" pattern="^[A-Za-z]+( [A-Za-z]+)*$" value="${student.name}">
                     <label>Age: </label><input type="number" min="5" max="25" placeholder="5-25" id="upd-age" value="${student.age}">
-                    <label>Class: </label><input type="text" min="1" max="10" placeholder="1-10" id="upd-class" value="${student.class}">
+                    <label>Class: </label><input type="number" min="1" max="10" placeholder="1-10" id="upd-class" value="${student.class}">
                     <label>Grade: </label><input type="text" id="upd-grade" value="${student.grade}" disabled>`;
 
 
@@ -964,17 +964,17 @@ document.getElementById("fetchTcr").addEventListener("click",()=>{
     fetchSingleTeacher(tcrData);
 });
 
-document.getElementById("tcr-add-btn").addEventListener("click",()=>{
-    this.preventDefault();
-    this.checkValidity();
-    this.reportValidity();
+document.getElementById("tcr-add-btn").addEventListener("click",(e)=>{
+    e.preventDefault();
+    e.checkValidity();
+    e.reportValidity();
     addTeacher();
 });
 
-document.getElementById("tcr-upd-btn").addEventListener("click",()=>{
-    this.preventDefault();
-    this.checkValidity();
-    this.reportValidity();
+document.getElementById("tcr-upd-btn").addEventListener("click",(e)=>{
+    e.preventDefault();
+    e.checkValidity();
+    e.reportValidity();
     updateTeacher();
 });
 
