@@ -107,7 +107,6 @@ function isLoggedIn() {
 
 function adjustUIForLogin() {
     if (isLoggedIn()) {
-        document.getElementById('signin-btn').style.display = 'none';
         document.getElementById('logout-btn').style.display = 'inline-block';
         profilePicPath = sessionStorage.getItem('profilePicPath');
         console.log(profilePicPath);
@@ -428,7 +427,7 @@ document.addEventListener('DOMContentLoaded', async ()=> {
 
 async function loadAnnouncements() {
     try {
-       const response = await fetch(`${API_BASE}/api/posts1?audience=teachers`);
+       const response = await fetch(`${API_BASE}/posts1?audience=teachers`);
         
         const data = await response.json();
         console.log(data);
