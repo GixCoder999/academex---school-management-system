@@ -406,7 +406,8 @@ body {
     background-color: var(--card-bg);
     border-radius: 12px;
     padding: 2rem;
-    width: 60%;
+    width: 50%;
+    max-width: 50%;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
     z-index: 1100;
     animation: fadeIn 0.3s ease-out;
@@ -423,7 +424,7 @@ body {
 }
 
 #subjects-list {
-    width: 100%;
+    width: 70%;
     padding: 0.75rem;
     border-radius: 8px;
     background-color: var(--page-bg);
@@ -680,4 +681,12 @@ body {
 .class-card {
     flex: 0 1 300px; /* Cards will be 300px max but can shrink */
     /* Your existing styles */
+}
+
+#close-btn {
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }
