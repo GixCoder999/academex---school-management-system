@@ -59,8 +59,11 @@ module.exports = (app) => {
 
         db.query(`select count(*) as count from teacher_assignments where teacher_id = ? group by teacher_id`,[teacher_id],(err,result)=>{
             console.log(result[0].count);
-            if (err) return res.status(500).send("Error deleting teacher");
-
+            if (err) {
+                console.log(err);
+                return res.status(500).send("Error deleting teacher");
+            
+            }
             if (result[0].count>0) return res.send(500).send("This teacher has many subjects assigned cannot delete this teacher."); 
         })
 
