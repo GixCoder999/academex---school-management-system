@@ -48,7 +48,7 @@ async function setPassword()
 		   sessionStorage.removeItem('authToken');
 		   sessionStorage.removeItem('profilePicPath');
 		   sessionStorage.removeItem('role');
-		   window.location.href = 'index.html' ;
+		   window.location.href = '../index.html' ;
            return;
 		}
 		alert(result.message);		
