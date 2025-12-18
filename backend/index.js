@@ -7,7 +7,7 @@ const db = require('./db');  // adjust relative path
 
 const app = express();
 app.use(cors({ 
-    origin: process.env.FRONTEND_URL,
+    origin: '*',
     methods: ['GET', 'POST', 'DELETE','PUT','PATCH'],
     allowedHeaders: ['Content-Type','Authorization']
 }));
