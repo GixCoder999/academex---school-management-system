@@ -17,7 +17,7 @@ module.exports = (app)=> {
     app.get('/classes/' ,async (req,res) =>
     {
         const classNo = req.query.classNo ;
-        const query = 'SELECT s.subject_id as subject_name ,t.name as tname ,ta.class_id FROM subjects s , teachers t,teacher_assignments ta WHERE ta.subject_code = s.subject_id AND ta.class_id = ?'
+        const query = 'SELECT distinct s.subject_id as subject_name ,t.name as tname ,ta.class_id FROM subjects s , teachers t,teacher_assignments ta WHERE ta.subject_code = s.subject_id AND ta.class_id = ?'
 
         db.query(query , [classNo] , (error,results) =>
         {
