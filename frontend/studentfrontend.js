@@ -215,7 +215,6 @@ function loadsubjects(subjectsArray)
 	   
 	     card.innerHTML = `
         <h3>${subject.subject_name}</h3>
-        <p>Teacher: ${subject.tname}</p>
         <p>Class: ${subject.class_id}</p>
         <button class="view-marks-btn" id = "${index+1}" data-stdid ="${stdid}" data-sub="${subject.subject_name}">
             View Marks
