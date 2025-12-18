@@ -17,7 +17,7 @@ module.exports = (app)=> {
     app.get('/classes/' ,async (req,res) =>
     {
         const classNo = req.query.classNo ;
-        const query = 'select subject_id,class_id as subject_name from subjects where class_id = ?';
+        const query = 'select subject_id as subject_name,class_id from subjects where class_id = ?';
 
         db.query(query , [classNo] , (error,results) =>
         {
