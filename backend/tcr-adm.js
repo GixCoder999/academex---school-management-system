@@ -65,7 +65,7 @@ module.exports = (app) => {
             
             }
             if (result[0].count>0) return res.send(500).send("This teacher has many subjects assigned cannot delete this teacher."); 
-        })
+        });
 
         const querydelete = 'DELETE FROM teachers WHERE teacher_id = ? AND name = ?'
         db.query(querydelete , [teacher_id ,teacher_name] , (err, result)=>{
