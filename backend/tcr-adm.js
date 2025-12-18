@@ -48,6 +48,7 @@ module.exports = (app) => {
         const teacher_id = Number(req.query.id);
         const teacher_name = req.query.name ;
 
+
         const preque = `DELETE from login_credentials where username = (select username from teachers where teacher_id = ? and name = ?)`
         
         db.query(preque,[teacher_id,teacher_name],(err,result)=>{
@@ -55,6 +56,12 @@ module.exports = (app) => {
                 return res.status(500).send('Error deleting teacher');
             }
         });
+
+        db.query(`select count(*) as count from teacher_assignments where teacher_id = ? group by teacher_id`,[teacher_id],(err,result)=>{
+            if (err) return res.status(500).send("Error deleting teacher");
+
+            if (result.count>0) return res.send(500).send("This teacher has many subjects assigned cannot delete this teacher."); 
+        })
 
         const querydelete = 'DELETE FROM teachers WHERE teacher_id = ? AND name = ?'
         db.query(querydelete , [teacher_id ,teacher_name] , (err, result)=>{
